@@ -1,15 +1,22 @@
 import React, {useEffect, useState} from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import JoblyApi from "./api";
-import JobList from "./JobList"
+import JobCard from "./JobCard";
 
-
+/**  Makes API call to show details of a specific company.
+ * 
+ *   State:
+ *   - company: object representing the company, like
+ *     { handle, name, description, numEmployees, logoUrl, jobs }
+ *     where jobs is [{ id, title, salary, equity }, ...]
+ *   - isLoading: boolean to show if the API call is in progress
+ *   - handle: company handle that is passed in as a URL parameter
+ *     when the company is clicked on
+ * 
+ *   App -> Routes -> CompanyDetail -> [JobCard, ...]
+*/
 function CompanyDetail() {
-    // make an API request here by calling the function in api.js
-    // useEffect
-    // isLoading 
-    // await it!
-    const [company, setCompany] = useState("");
+    const [company, setCompany] = useState({});
     const [isLoading, setIsLoading] = useState(true);  
     const { handle } = useParams();
 
@@ -20,7 +27,7 @@ function CompanyDetail() {
         setIsLoading(false);
       }
       getCompany();
-    }, []);
+    }, [handle]);
 
     const { name, description, jobs } = company;
 
@@ -30,7 +37,9 @@ function CompanyDetail() {
         <div>
           <h1>{name}</h1>
           <p>{description}</p>
-            <JobList jobs={jobs}/>
+            {jobs.map(job =>
+              <JobCard key={job.id} job={job} />
+            )}
         </div>
     );
   }

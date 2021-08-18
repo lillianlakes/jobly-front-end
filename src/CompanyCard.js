@@ -1,13 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+/**  Shows name, description and logo of company
+ * 
+ *   Prop:
+ *   - company: object representing the company, like
+ *     { handle, name, description, numEmployees, logoUrl, jobs }
+ *     where jobs is [{ id, title, salary, equity }, ...]
+ * 
+ *   App -> Routes -> CompanyList -> CompanyCard
+*/
 function CompanyCard({ company }) {
-
-  console.log(`company sent to CompanyCard is `, company);
 
   const { name, description, logoUrl, handle } = company;
 
-  console.log(name, "is name");
   return (
 
     <div>

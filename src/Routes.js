@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Home from "./Home";
 import CompanyList from "./CompanyList.js";
@@ -8,7 +8,9 @@ import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 import ProfileForm from "./ProfileForm";
 
-
+/** Routes to different endpoints and redirects to home if an endpoint
+ *  is not found
+ */
 function Routes() {
     return (
             <Switch>

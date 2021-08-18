@@ -1,5 +1,16 @@
 import React, { useState } from "react";
 
+/** Takes in a search term and calls the search function
+ *  on click
+ * 
+ *  Props: 
+ *  - search function (from either CompanyList or JobList)
+ * 
+ *  State:
+ *  - term: term that is being searched for
+ * 
+ *  [CompanyList, JobList] -> SearchBox
+ */
 function SearchBox({search}) {
   const [term, setTerm] = useState("");
 

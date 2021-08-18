@@ -33,14 +33,7 @@ class JoblyApi {
     }
   }
 
-  // // Individual API routes
-
-  // /** Get details on a company by handle. */
-
-  // static async filterCompanies(query) {
-  //   let res = await this.request(`companies?${query}`);
-  //   return res;
-  // }
+  // Individual API routes
 
   /** Get details on a company by handle. */
 
