@@ -25,9 +25,9 @@ function CompanyList() {
         if (!companyName) {
           companiesResults = await JoblyApi.request('companies')
         } else {
-          companiesResults = await JoblyApi.request(`companies?${companyName}`)
+          companiesResults = await JoblyApi.request(`companies?name=${companyName}`)
         }
-        setCompanies(companies => companiesResults);
+        setCompanies(companies => companiesResults.companies);
         setIsLoading(false);
       }
       getCompanies();
@@ -40,10 +40,9 @@ function CompanyList() {
     return (
         <div>
           <SearchBox search={search}/>
-
-          {companies.map(company =>
-            <CompanyCard key={company.handle} company={company}/>)}
-
+          {companies.map(company => 
+            <CompanyCard key={company.handle} company={company}/>
+            )}
         </div>
     );
   }
