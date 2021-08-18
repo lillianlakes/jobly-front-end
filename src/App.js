@@ -1,25 +1,24 @@
-import logo from './logo.svg';
+import React, {useState} from "react";
+import { Route, Switch, Redirect, BrowserRouter, NavLink} from "react-router-dom";
+import Routes from "./Routes";
+import NavBar from "./Navbar";
 import './App.css';
 
 function App() {
+  // make request to API to log in and get a token - we'll get a user here somewhere (handwave)
+  // define function and pass logInlogOut function to forms
+  // state for current user
+  // state for isLoggedIn buttttttt maybe don't need it if we have a user because we could just say if user
+  // and/or other things
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <NavBar /> 
+        <Routes />
+      </BrowserRouter> 
     </div>
   );
 }
 
 export default App;
+
