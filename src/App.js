@@ -6,7 +6,7 @@ import UserContext from "./UserContext";
 import './App.css';
 
 function App() {
-
+// from check-in (put history.push into handle submit or something further down, but not here)
   const [token, setToken] = useState(null);
   const [currentUser, setCurrentUser] = useState({});
   // make request to API to log in and get a token - we'll get a user here somewhere (handwave)
@@ -60,7 +60,7 @@ function App() {
         <NavBar /> 
         <Routes />
       </BrowserRouter> 
-      <UserContext.Provider value={ user }></UserContext.Provider>
+     
     </div>
   );
 }
