@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import JoblyApi from "./api";
 import CompanyCard from "./CompanyCard";
 import SearchBox from "./SearchBox";
@@ -15,43 +15,32 @@ import SearchBox from "./SearchBox";
  *   App -> Routes -> CompanyList -> [SearchBox, CompanyCard]
 */
 function CompanyList() {
-    
-    const [companies, setCompanies] = useState([]);
-    const [isLoading, setIsLoading] = useState(true); 
-    const [companyName, setCompanyName] = useState("");    
 
-    function search(companyName) {
-      setCompanyName(companyName);
-    }
+  const [companies, setCompanies] = useState([]);
 
-    // TODO: put line 35 into the search function... then we don't need anything with companyName
-    useEffect(function getCompaniesWhenMounted() {
-      async function getCompanies() {
-        let companiesResults;
-
-        if (!companyName) {
-          companiesResults = await JoblyApi.request('companies')
-        } else {
-          companiesResults = await JoblyApi.request(`companies?name=${companyName}`)
-        }
-        setCompanies(companiesResults.companies);
-        setIsLoading(false);
-      }
-      getCompanies();
-    }, [companyName]);
-  
-    if (isLoading) return <i>Loading...</i>;
-
-    // TODO: refactor: if (companies.length === 0) return <i>Loading...</i> ... this would re-render when setCompanies updates
-    // then delete 'setIsLoading(false)'
-    return (
-        <div>
-          <SearchBox search={search}/>
-          {companies.map(company => 
-            <CompanyCard key={company.handle} company={company}/>
-            )}
-        </div>
-    );
+  async function search(companyName) {
+    let companiesResults = await JoblyApi.request(`companies?name=${companyName}`);
+    setCompanies(companiesResults.companies);
   }
+
+  useEffect(function getCompaniesWhenMounted() {
+    async function getCompanies() {
+      let companiesResults = await JoblyApi.request('companies')
+      setCompanies(companiesResults.companies);
+    }
+    getCompanies();
+  }, []);
+
+  if (companies.length === 0) return <i>Loading...</i>;
+
+  return (
+    <div>
+      <SearchBox search={search} />
+      {companies.map(company =>
+        <CompanyCard key={company.handle} company={company} />
+      )}
+    </div>
+  );
+}
 
 export default CompanyList;
