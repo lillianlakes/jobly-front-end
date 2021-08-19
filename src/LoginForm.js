@@ -1,20 +1,20 @@
-import React, { useState } from "react";
-import UserContext from "./UserContext";
-
+import React, { useContext, useState } from "react";
+// import UserContext from "./UserContext"; ????
 
 /** Form for logging in.
  *
  * Props:
  * - initialFormData
- * - handleSave: function to call in parent.
+ * - login: function to call in parent.
  *
  * App -> Routes -> LoginForm
  */
 
 const defaultInitialFormData = { username: "", password: "" };
 
-function LoginForm({ initialFormData = defaultInitialFormData, handleSave }) {
+function LoginForm({ initialFormData = defaultInitialFormData, login }) {
   const [formData, setFormData] = useState(initialFormData);
+  // const {currentUser} = useContext(UserContext); ????
 
   /** Update form input. */
   function handleChange(evt) {
@@ -28,8 +28,8 @@ function LoginForm({ initialFormData = defaultInitialFormData, handleSave }) {
   /** Call parent function and clear form. */
   function handleSubmit(evt) {
     evt.preventDefault();
-    handleSave(formData); // THIS DOES NOT EXIST YET
-    // update our UserContext
+    login(formData);
+    // update our UserContext ????
     setFormData(initialFormData);
   }
 
@@ -46,6 +46,7 @@ function LoginForm({ initialFormData = defaultInitialFormData, handleSave }) {
               onChange={handleChange}
               value={formData.username}
               aria-label="username"
+              required
           />
         </div>
 
@@ -58,6 +59,7 @@ function LoginForm({ initialFormData = defaultInitialFormData, handleSave }) {
               onChange={handleChange}
               value={formData.password}
               aria-label="password"
+              required
           />
         </div>
 

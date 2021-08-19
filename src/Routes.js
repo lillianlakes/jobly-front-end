@@ -11,7 +11,7 @@ import ProfileForm from "./ProfileForm";
 /** Routes to different endpoints and redirects to home if an endpoint
  *  is not found
  */
-function Routes() {
+function Routes({login , register}) {
     return (
             <Switch>
                 <Route exact path="/" >
@@ -27,10 +27,10 @@ function Routes() {
                     <CompanyDetail />
                 </Route>
                 <Route exact path="/login" >
-                    <LoginForm /> {/** pass the logInLogOut function down here from App & in ohter forms */ }
+                    <LoginForm login={login}/>
                 </Route>
                 <Route exact path="/signup" >
-                    <SignupForm />
+                    <SignupForm register={register}/>
                 </Route>
                 <Route exact path="/profile" >
                     <ProfileForm />

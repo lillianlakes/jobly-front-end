@@ -17,7 +17,7 @@ function JobCard({ job }) {
     <div className="JobCard card">
       <div className="card-body">
         <h6 className="card-title">{title}</h6>
-        <p>companyName</p>
+        <p>{companyName}</p>
         <p>Salary: {salary}</p>
         <p>Equity: {equity}</p>
       </div>
