@@ -2,14 +2,16 @@ import React, {useState, useEffect} from "react";
 import { Route, Switch, Redirect, BrowserRouter, NavLink} from "react-router-dom";
 import Routes from "./Routes";
 import NavBar from "./Navbar";
-import UserContext from "./UserContext";
+import UserContext from "./UserContext"; //change this to lower case for the file name?
 import './App.css';
 import JoblyApi from "./api";
+import jwt from "jsonwebtoken";
 
 function App() {
 // from check-in (put history.push into handle submit or something further down, but not here)
+
   const [token, setToken] = useState(null);
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState({});
   // make request to API to log in and get a token - we'll get a user here somewhere (handwave)
   // define function and pass logInlogOut function to forms
   // state for current user
@@ -21,11 +23,13 @@ function App() {
    *   Sets the currentUser.
    */ 
    useEffect(function updateUserWithTokenChange() {
-    async function getCurrentUser(username, token) {
+    async function getCurrentUser(token) {
+      let { username } = jwt.decode(token);
+    console.log(username, "USERNAME INSIDE APP LINE 26")
       let user = await JoblyApi.getCurrentUser(username, token);
-      setCurrentUser(() => user);
+      setCurrentUser(user);
     }
-    getCurrentUser();
+    if(token) getCurrentUser(token);
   }, [token]);
 
   /**  
@@ -33,6 +37,7 @@ function App() {
    *   Sets the token and gets the currentUser.
    */ 
   async function login({username, password}) {
+    console.log({username, password}, "USERNAME/PW IN LOGIN APP.JS")
     let newToken = await JoblyApi.login(username, password);
     setToken(() => newToken);
   }
@@ -69,14 +74,16 @@ function App() {
   
   This would be an excellent place to use useContext, so you can store the current user’s info high up in your hierarchy, like on the App component.
  */
+console.log(currentUser, "FROM APP");
 
   return (
     <div className="App">
+      <UserContext.Provider value={ currentUser }> 
       <BrowserRouter>
-        <NavBar logout={logout}/> 
+        <NavBar logout={logout} /> 
         <Routes login={login} register={register}/>
       </BrowserRouter> 
-      <UserContext.Provider value={ currentUser }></UserContext.Provider>     
+      </UserContext.Provider>
     </div>
   );
 }

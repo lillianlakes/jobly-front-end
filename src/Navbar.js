@@ -4,9 +4,12 @@ import UserContext from "./UserContext";
 
 /** docstring!!! */
 
-function NavBar(logout) {
+function NavBar({ logout }) {
 
-  const {currentUser} = useContext(UserContext);
+
+  const currentUser = useContext(UserContext); //{}?
+
+  console.log(currentUser, "CURR USER FROM NAVBAR");
 
   return (
       <nav className="NavBar">

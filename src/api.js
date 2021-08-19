@@ -49,6 +49,7 @@ class JoblyApi {
     let res = await this.request(`auth/token`, 
           {"username": username, "password": password},
           "post");
+          console.log(res.token, "INSIDE LOGIN API.JS")
     JoblyApi.token = res.token;
     return JoblyApi.token;
   }
@@ -71,16 +72,17 @@ class JoblyApi {
 
   /** Get the current user given a valid username and token */
   static async getCurrentUser(username) {
+    console.log(username, "USERNAME INSIDE GETCURRENTUSER")
     let res = await this.request(`users/${username}`)
     return res.user;
   }
 
 }
 
-// for now, put token ("testuser" / "password" on class)
-JoblyApi.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
-    "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
-    "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
+// // for now, put token ("testuser" / "password" on class)
+// JoblyApi.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
+//     "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
+//     "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
 
 
 export default JoblyApi;

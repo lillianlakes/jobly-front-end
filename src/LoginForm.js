@@ -1,4 +1,6 @@
 import React, { useContext, useState } from "react";
+import {useHistory} from 'react-router-dom';
+
 // import UserContext from "./UserContext"; ????
 
 /** Form for logging in.
@@ -14,6 +16,7 @@ const defaultInitialFormData = { username: "", password: "" };
 
 function LoginForm({ initialFormData = defaultInitialFormData, login }) {
   const [formData, setFormData] = useState(initialFormData);
+  const history = useHistory();
   // const {currentUser} = useContext(UserContext); ????
 
   /** Update form input. */
@@ -31,6 +34,7 @@ function LoginForm({ initialFormData = defaultInitialFormData, login }) {
     login(formData);
     // update our UserContext ????
     setFormData(initialFormData);
+    history.push("/companies");
   }
 
   return (
@@ -52,6 +56,7 @@ function LoginForm({ initialFormData = defaultInitialFormData, login }) {
 
         <div className="form-group">
           <input
+              type="password"
               id="password"
               name="password"
               className="form-control"
