@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {useHistory} from 'react-router-dom';
 
 /** Form for signin up.
  *
@@ -13,6 +14,7 @@ const defaultInitialFormData = { username: "", password: "", firstName: "", last
 
 function SignupForm({ initialFormData = defaultInitialFormData, register }) {
   const [formData, setFormData] = useState(initialFormData);
+  const history = useHistory();
 
   /** Update form input. */
   function handleChange(evt) {
@@ -29,6 +31,7 @@ function SignupForm({ initialFormData = defaultInitialFormData, register }) {
     register(formData); 
     // update our UserContext ????
     setFormData(initialFormData);
+    history.push("/companies");
   }
 
   return (

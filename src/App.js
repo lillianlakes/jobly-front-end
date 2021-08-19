@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { Route, Switch, Redirect, BrowserRouter, NavLink} from "react-router-dom";
+import { BrowserRouter} from "react-router-dom";
 import Routes from "./Routes";
 import NavBar from "./Navbar";
 import UserContext from "./UserContext"; //change this to lower case for the file name?

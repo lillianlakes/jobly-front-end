@@ -11,6 +11,8 @@ function NavBar({ logout }) {
 
   console.log(currentUser, "CURR USER FROM NAVBAR");
 
+  console.log(`current user boolean @ Nav `, !!currentUser);
+
   return (
       <nav className="NavBar">
         <NavLink exact to="/">Jobly</NavLink>
