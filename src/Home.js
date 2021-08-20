@@ -24,10 +24,10 @@ function Home() {
           :
           (
             <p>
-              <Link classname="btn btn-primary font-weight-bold mr-3"
+              <Link className="btn btn-primary font-weight-bold mr-3"
                 to="/login">Log in
               </Link>
-              <Link classname="btn btn-primary font-weight-bold"
+              <Link className="btn btn-primary font-weight-bold"
                 to="/signup">Sign Up</Link> 
             </p>
           )}

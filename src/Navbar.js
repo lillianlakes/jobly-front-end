@@ -14,7 +14,7 @@ function NavBar({ logOut }) {
   return (
 
     <nav className="Navigation navbar navbar-expand-md">
-      <Link className="navbar-brand" exact to="/">Jobly</Link>
+      <NavLink className="navbar-brand" exact to="/">Jobly</NavLink>
 
       {currentUser.username ? (
         <ul className="navbar-nav ml-auto">
@@ -28,7 +28,7 @@ function NavBar({ logOut }) {
             <NavLink className="nav-link" exact to="/profile">Profile</NavLink>
           </li>
           <li className="nav-item">
-            <NavLink className="nav-link" exact to="/" onClick={logOut}>Log out {currentUser.username}</NavLink>
+            <a className="nav-link" href="/" onClick={logOut}>Log out {currentUser.username}</a>
           </li>
         </ul>
       ) : (
