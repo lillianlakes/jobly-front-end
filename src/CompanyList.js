@@ -34,11 +34,21 @@ function CompanyList() {
   if (companies.length === 0) return <i>Loading...</i>;
 
   return (
-    <div>
+    <div className="CompanyList col-md-8 offset-md-2">
       <SearchBox search={search} />
-      {companies.map(company =>
-        <CompanyCard key={company.handle} company={company} />
-      )}
+      {companies.length
+        ? (
+          <div className="CompanyList-list">
+            {companies.map(company =>
+              <CompanyCard
+                key={company.handle}
+                company={company}
+              />
+            )}
+          </div>
+        ) : (
+          <p className="lead">Sorry, no results were found!</p>
+        )}
     </div>
   );
 }

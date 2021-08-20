@@ -34,8 +34,8 @@ function CompanyDetail() {
   if (isLoading) return <i>Loading...</i>;
 
   return (
-    <div>
-      <h1>{name}</h1>
+    <div className="CompanyDetail col-md-8 offset-md-2">
+      <h4>{name}</h4>
       <p>{description}</p>
       {jobs.map(job =>
         <JobCard key={job.id} job={job} />

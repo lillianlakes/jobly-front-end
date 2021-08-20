@@ -6,6 +6,8 @@ import UserContext from "./UserContext"; //change this to lower case for the fil
 import './App.css';
 import JoblyApi from "./api";
 import jwt from "jsonwebtoken"
+
+
 // import useLocalStorage from "./hooks/useLocalStorage";
 // when the page reloads, look in localStorage to see if there is a token there
 /**

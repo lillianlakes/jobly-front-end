@@ -1,6 +1,7 @@
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import UserContext from "./UserContext";
+import "./Navbar.css";
 
 /** 
  * NavBar generates two different navbars, and chooses which to display depending on
@@ -9,24 +10,39 @@ import UserContext from "./UserContext";
 
 function NavBar({ logOut }) {
   const currentUser = useContext(UserContext);
- console.log("NavBar", currentUser)
+  console.log("NavBar", currentUser)
   return (
-    <nav className="NavBar">
-      <NavLink exact to="/">Jobly</NavLink>
+
+    <nav className="Navigation navbar navbar-expand-md">
+      <Link className="navbar-brand" exact to="/">Jobly</Link>
+
       {currentUser.username ? (
-        <div>
-          <NavLink exact to="/companies">Companies</NavLink>
-          <NavLink exact to="/companies/jobs">Jobs</NavLink>
-          <NavLink exact to="/profile">Edit Profile</NavLink>
-          <NavLink exact to="/" onClick={logOut}>Log out {currentUser.username}</NavLink>
-        </div>
+        <ul className="navbar-nav ml-auto">
+          <li className="nav-item mr-4">
+            <NavLink className="nav-link" exact to="/companies">Companies</NavLink>
+          </li>
+          <li className="nav-item mr-4">
+            <NavLink className="nav-link" exact to="/companies/jobs">Jobs</NavLink>
+          </li>
+          <li className="nav-item mr-4">
+            <NavLink className="nav-link" exact to="/profile">Profile</NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" exact to="/" onClick={logOut}>Log out {currentUser.username}</NavLink>
+          </li>
+        </ul>
       ) : (
-        <div>
-          <NavLink exact to="/login">Login</NavLink>
-          <NavLink exact to="/signup">Sign Up</NavLink>
-        </div>
+        <ul className="navbar-nav ml-auto">
+          <li className="nav-item mr-4">
+            <NavLink className="nav-link"exact to="/login">Login</NavLink>
+          </li>
+          <li className="nav-item mr-4">
+            <NavLink className="nav-link" exact to="/signup">Sign Up</NavLink>
+          </li>
+        </ul>
       )}
     </nav>
+
   );
 }
 
