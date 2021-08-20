@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
-/** Form for signin up.
+/** Form for signing up.
  *
  * Props:
  * - initialFormData
@@ -25,89 +25,88 @@ function SignupForm({ initialFormData = defaultInitialFormData, register }) {
     }));
   }
 
-  /** Call parent function and clear form. */
+  /** Call parent function, clear form, redirect user to /companies. */
   function handleSubmit(evt) {
     evt.preventDefault();
-    register(formData); 
-    // update our UserContext ????
+    register(formData);
     setFormData(initialFormData);
     history.push("/companies");
   }
 
   return (
-      <div className="SignupForm">
+    <div className="SignupForm">
       <h1>Sign Up</h1>
       <form className="SignupForm-formfields" onSubmit={handleSubmit}>
         <div className="form-group">
           <input
-              id="username"
-              name="username"
-              className="form-control"
-              placeholder="username"
-              onChange={handleChange}
-              value={formData.username}
-              aria-label="username"
-              required
+            id="username"
+            name="username"
+            className="form-control"
+            placeholder="username"
+            onChange={handleChange}
+            value={formData.username}
+            aria-label="username"
+            required
           />
         </div>
 
         <div className="form-group">
           <input
-              id="password"
-              name="password"
-              className="form-control"
-              placeholder="password"
-              onChange={handleChange}
-              value={formData.password}
-              aria-label="password"
-              required
+            id="password"
+            name="password"
+            className="form-control"
+            placeholder="password"
+            onChange={handleChange}
+            value={formData.password}
+            aria-label="password"
+            required
           />
         </div>
 
         <div className="form-group">
           <input
-              id="firstName"
-              name="firstName"
-              className="form-control"
-              placeholder="firstName"
-              onChange={handleChange}
-              value={formData.firstName}
-              aria-label="firstName"
-              required
+            id="firstName"
+            name="firstName"
+            className="form-control"
+            placeholder="firstName"
+            onChange={handleChange}
+            value={formData.firstName}
+            aria-label="firstName"
+            required
           />
         </div>
 
         <div className="form-group">
           <input
-              id="lastName"
-              name="lastName"
-              className="form-control"
-              placeholder="lastName"
-              onChange={handleChange}
-              value={formData.lastName}
-              aria-label="lastName"
-              required
+            id="lastName"
+            name="lastName"
+            className="form-control"
+            placeholder="lastName"
+            onChange={handleChange}
+            value={formData.lastName}
+            aria-label="lastName"
+            required
           />
         </div>
 
         <div className="form-group">
           <input
-              id="email"
-              name="email"
-              className="form-control"
-              placeholder="email"
-              onChange={handleChange}
-              value={formData.email}
-              aria-label="email"
-              required
+            id="email"
+            name="email"
+            className="form-control"
+            placeholder="email"
+            onChange={handleChange}
+            value={formData.email}
+            aria-label="email"
+            required
           />
         </div>
 
-          <button className="btn-primary rig btn btn-sm SignupForm-btn">
-            Submit
-          </button>
+        <button className="btn-primary rig btn btn-sm SignupForm-btn">
+          Submit
+        </button>
       </form>
-      </div>
+    </div>
   );
 }
 

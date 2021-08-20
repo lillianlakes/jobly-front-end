@@ -21,7 +21,7 @@ function JobCard({ job }) {
         <p>Salary: {salary}</p>
         <p>Equity: {equity}</p>
       </div>
-    </div>  
+    </div>
   )
 }
 

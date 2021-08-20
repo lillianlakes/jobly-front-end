@@ -11,7 +11,7 @@ import React, { useState } from "react";
  * 
  *  [CompanyList, JobList] -> SearchBox
  */
-function SearchBox({search}) {
+function SearchBox({ search }) {
   const [term, setTerm] = useState("");
 
   function handleChange(evt) {
@@ -26,8 +26,8 @@ function SearchBox({search}) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input value={term} onChange={handleChange} 
-      placeholder="Enter search term..." />
+      <input value={term} onChange={handleChange}
+        placeholder="Enter search term..." />
       <button>Search!</button>
     </form>
   );

@@ -43,11 +43,11 @@ function JobList() {
 
   return (
     <div className="JobList col-md-8 offset-md-2">
-      <SearchBox search={search}/>
+      <SearchBox search={search} />
       {jobs.length ?
-      jobs.map(job =>
-        <JobCard key={job.id} job={job} />
-      ) : <p className="lead">Sorry, no results were found!</p>}
+        jobs.map(job =>
+          <JobCard key={job.id} job={job} />
+        ) : <p className="lead">Sorry, no results were found!</p>}
     </div>
   );
 

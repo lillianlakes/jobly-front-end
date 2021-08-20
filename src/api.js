@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
 
 /** API Class.
@@ -13,7 +14,7 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
 class JoblyApi {
   // the token for interactive with the API will be stored here.
   static token;
-  
+
   // get request for companies or jobs
   static async request(endpoint, data = {}, method = "get") {
     console.debug("API Call:", endpoint, data, method);
@@ -21,8 +22,8 @@ class JoblyApi {
     const url = `${BASE_URL}/${endpoint}`;
     const headers = { Authorization: `Bearer ${JoblyApi.token}` };
     const params = (method === "get")
-        ? data
-        : {};
+      ? data
+      : {};
 
     try {
       return (await axios({ url, method, data, params, headers })).data;
@@ -42,14 +43,11 @@ class JoblyApi {
     return res.company;
   }
 
-  // obviously, you'll add a lot here ...
-
   /** Log in user given a username and password and get a token */
   static async login(username, password) {
-    let res = await this.request(`auth/token`, 
-          {"username": username, "password": password},
-          "post");
-          console.log(res.token, "INSIDE LOGIN API.JS")
+    let res = await this.request(`auth/token`,
+      { "username": username, "password": password },
+      "post");
     JoblyApi.token = res.token;
     return JoblyApi.token;
   }
@@ -57,15 +55,15 @@ class JoblyApi {
   /** Register user given a username, password, firstName, lastName, and email,
    *  then return a token */
   static async register(username, password, firstName, lastName, email) {
-    let res = await this.request(`auth/register`, 
-          { 
-            "username": username, 
-            "password": password,
-            "firstName": firstName,
-            "lastName": lastName,
-            "email": email
-          },
-          "post");
+    let res = await this.request(`auth/register`,
+      {
+        "username": username,
+        "password": password,
+        "firstName": firstName,
+        "lastName": lastName,
+        "email": email
+      },
+      "post");
     JoblyApi.token = res.token;
     return JoblyApi.token;
   }

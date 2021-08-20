@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import JoblyApi from "./api";
 import JobCard from "./JobCard";
@@ -16,32 +16,32 @@ import JobCard from "./JobCard";
  *   App -> Routes -> CompanyDetail -> [JobCard, ...]
 */
 function CompanyDetail() {
-    const [company, setCompany] = useState({});
-    const [isLoading, setIsLoading] = useState(true);  
-    const { handle } = useParams();
+  const [company, setCompany] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+  const { handle } = useParams();
 
-    useEffect(function getCompanyWhenMounted() {
-      async function getCompany() {
-        const companyData = await JoblyApi.getCompany(handle);
-        setCompany(companyData);
-        setIsLoading(false);
-      }
-      getCompany();
-    }, [handle]);
+  useEffect(function getCompanyWhenMounted() {
+    async function getCompany() {
+      const companyData = await JoblyApi.getCompany(handle);
+      setCompany(companyData);
+      setIsLoading(false);
+    }
+    getCompany();
+  }, [handle]);
 
-    const { name, description, jobs } = company;
+  const { name, description, jobs } = company;
 
-    if (isLoading) return <i>Loading...</i>;
-  
-    return (
-        <div>
-          <h1>{name}</h1>
-          <p>{description}</p>
-            {jobs.map(job =>
-              <JobCard key={job.id} job={job} />
-            )}
-        </div>
-    );
-  }
+  if (isLoading) return <i>Loading...</i>;
+
+  return (
+    <div>
+      <h1>{name}</h1>
+      <p>{description}</p>
+      {jobs.map(job =>
+        <JobCard key={job.id} job={job} />
+      )}
+    </div>
+  );
+}
 
 export default CompanyDetail;
