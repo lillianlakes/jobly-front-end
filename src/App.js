@@ -24,14 +24,14 @@ function App() {
   
   const initialToken = JSON.parse(localStorage.getItem("token")) || null;  
   
-  console.log(`initialToken `, initialToken);
-  console.log(`typeof initialToken `, typeof initialToken);
+  // console.log(`initialToken `, initialToken);
+  // console.log(`typeof initialToken `, typeof initialToken);
 
   const [token, setToken] = useState(initialToken);
   // const [token, setToken] = useState(null);
   const [currentUser, setCurrentUser] = useState("fetching"); // or could have a user, or an empty object, or set it to string like "waiting" or fetching
   // could add isLoggingIn
-  console.log("App", token, currentUser)
+  // console.log("App", token, currentUser)
 
 
 
@@ -40,13 +40,16 @@ function App() {
    *   Sets the currentUser.
    */
   useEffect(function updateUserWithTokenChange() {  // when we refresh, it renders, but there is no user yet
-    console.log("App updateUserWithTokenChange", token)
+    // console.log("App updateUserWithTokenChange", token)
     
     async function fetchCurrentUser(token) { // change this to fetch or update, not get - get would actually return the current user
       setCurrentUser("fetching");
       let { username } = jwt.decode(token);
+      // console.log("USERNAME AFTER JWT.DECODE: ", username);
       let user = await JoblyApi.getCurrentUser(username, token);
+      // console.log("ABOUT TO SET CURRENT USER----> USER FROM API IS: ", user)
       setCurrentUser(user);
+      // console.log("JUST SET CURRENT USER BUT WILL SHOW PREVIOUS STATE", currentUser) 
     }
     // if (currentUser === "fetching") return;
     if (token) fetchCurrentUser(token);
@@ -84,16 +87,16 @@ function App() {
     return localStorage.setItem("token", JSON.stringify(null));
   }
 
-  console.log("render ", currentUser, "FROM APP");
+  // console.log("render, currentUser", currentUser, "FROM APP");
 
-  console.log(`right before rendering app, localStorage `, localStorage);
-  console.log(`typeof localStorage `, typeof localStorage);
+  // console.log(`right before rendering app, localStorage `, localStorage);
+  // console.log(`typeof localStorage `, typeof localStorage);
 
   return (
     <div className="App">
-      <UserContext.Provider value={currentUser}>
+      <UserContext.Provider value={{currentUser, setCurrentUser }}> {/** must use two curly braces to ensure that this works when you destructure in children INVESTIGATE MORE  */}
         <BrowserRouter>
-          {currentUser === "fetching" && token === null?
+          {currentUser === "fetching" ?
             <i>loading...</i>
             :
             <div>

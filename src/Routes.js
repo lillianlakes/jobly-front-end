@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Home from "./Home";
 import CompanyList from "./CompanyList.js";
@@ -7,34 +7,39 @@ import JobList from "./JobList";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 import ProfileForm from "./ProfileForm";
+import UserContext from "./UserContext";
+import PrivateRoute from "./PrivateRoute";
 
 /** Routes to different endpoints and redirects to home if an endpoint
- *  if not found
+ *  if not found. 
+ *  Private Routes check for a current user - see PrivateRoute.js
  */
 function Routes({ logIn, register }) {
+    const { currentUser } = useContext(UserContext);
+    console.log("Routes: currentUser", currentUser);
     return (
         <Switch>
             <Route exact path="/" >
                 <Home />
             </Route>
-            <Route exact path="/companies" >
+            <PrivateRoute exact path="/companies" >
                 <CompanyList />
-            </Route>
-            <Route exact path="/companies/jobs" >
-                <JobList />
-            </Route>
-            <Route exact path="/companies/:handle" >
-                <CompanyDetail />
-            </Route>
+            </PrivateRoute>
+            <PrivateRoute exact path="/companies/jobs" >
+                {<JobList />}
+            </PrivateRoute>
+            <PrivateRoute exact path="/companies/:handle" >
+                {<CompanyDetail />}
+            </PrivateRoute>
             <Route exact path="/login" >
                 <LoginForm logIn={logIn} />
             </Route>
             <Route exact path="/signup" >
                 <SignupForm register={register} />
             </Route>
-            <Route exact path="/profile" >
+            <PrivateRoute exact path="/profile" >
                 <ProfileForm />
-            </Route>
+            </PrivateRoute>
             {/* <Route><NotFound /></Route> */}
             <Redirect to="/" />
         </Switch>

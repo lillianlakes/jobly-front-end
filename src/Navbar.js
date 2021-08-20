@@ -9,7 +9,7 @@ import "./Navbar.css";
  */
 
 function NavBar({ logOut }) {
-  const currentUser = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
   console.log("NavBar", currentUser)
   return (
 
