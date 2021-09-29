@@ -17,9 +17,9 @@ function Home() {
       <div className="container text-center">
         <h1 className="mb-4 font-weight-bold">Jobly</h1>
         <p className="lead">All the jobs in one, convenient place.</p>
-        {currentUser ?
+        {currentUser.username ?
           (
-            <h2>Welcome Back! {currentUser.firstName}</h2>
+            <h2>Welcome back, {currentUser.firstName}!</h2>
           )
           :
           (
