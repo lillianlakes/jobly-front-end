@@ -23,7 +23,7 @@ function Home() {
           )
           :
           (
-            <div class="home-button-container">
+            <div className="home-button-container">
               <Link className="home-button btn btn-primary font-weight-bold mr-3"
                 to="/login">Log in
               </Link>

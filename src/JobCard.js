@@ -1,5 +1,6 @@
 import React from "react";
 import "./JobCard.css";
+import formatSalary from "./utilities/formatSalary.js"
 
 /**  Shows title, salary and equity for a job
  * 
@@ -12,13 +13,14 @@ import "./JobCard.css";
 function JobCard({ job }) {
 
   const { title, salary, equity } = job;
+  console.log(typeof(equity), "THIS IS THE TYPE FOR EQUITY VAR")
 
   return (
     <div className="JobCard card">
       <div className="card-body">
-        <h5 className="card-title">{title}</h5>
-        <p>{salary && <div><small>Salary: {salary}</small></div>}</p>
-        <p>{equity !== undefined && <div><small>Equity: {equity}</small></div>}</p>
+        <h5 className="card-title"><b>{title}</b></h5>
+        <p>{salary && <div><small>Salary: {formatSalary(salary)}</small></div>}</p>
+        <p>{equity !== undefined && <small>Equity: {equity}</small>}</p>
       </div>
     </div>
   )
