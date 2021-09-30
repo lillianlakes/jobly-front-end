@@ -30,7 +30,7 @@ function ProfileForm() {
     firstName: currentUser.firstName,
     lastName: currentUser.lastName,
     email: currentUser.email,
-    username: currentUser.username,
+    // username: currentUser.username,
     password: "",
   });
   const [formErrors, setFormErrors] = useState([]);
@@ -65,11 +65,11 @@ function ProfileForm() {
       password: formData.password,
     };
 
-    let username = formData.username;
+    // let username = formData.username;
     let updatedUser;
 
     try {
-      updatedUser = await JoblyApi.saveProfile(username, profileData);
+      updatedUser = await JoblyApi.saveProfile(currentUser.username, profileData);
     } catch (errors) {
     //   debugger;
       setFormErrors(errors);
@@ -96,13 +96,13 @@ function ProfileForm() {
 
   return (
       <div className="col-md-6 col-lg-4 offset-md-3 offset-lg-4">
-        <h1>Edit Profile</h1>
+        <h1>Profile</h1>
         <div className="profile-form card">
           <div className="card-body">
             <form>
 
               <div className="form-group form-user">
-                <label><h3>Username: {formData.username}</h3> </label>
+                <label><h3>Edit details for {currentUser.username}:</h3> </label>
               </div>
 
               <div className="form-group">
