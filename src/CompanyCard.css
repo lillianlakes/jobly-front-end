@@ -1,17 +1,30 @@
 .CompanyCard {
-    max-height: 250px;
+    text-decoration: none;
+    /* max-height: 250px; */
     margin-bottom: 1rem;
     color: inherit;
-    border-radius: 0;
+    border-radius: 5px;
     border: none;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    padding: 1rem .5rem .5rem;
+    /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); */
+    transition: top ease 0.5sec;  
   }
-  
+
   .CompanyCard img {
     width: 50px;
   }
   
   .CompanyCard:hover { /* <Card /> that is also <Link /> */
-    text-decoration: none;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    color: black;
+    box-shadow:
+       inset 0 -1em 1em rgba(0,0,0,0.1),
+             0 0 0 1px rgb(255,255,255), 
+             0.3em 0.3em 1em rgba(0,0,0,0.3);
+    top: -1px;
+  }
+
+  .CompanyCard .card-title {
+    margin-bottom: 1rem;;
+    display: flex;
+    justify-content: space-between;
   }

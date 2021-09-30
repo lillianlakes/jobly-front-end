@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import Alert from "./Alert";
 import JoblyApi from "./api";
 import UserContext from "./UserContext";
+import "./ProfileForm.css";
 
 // eslint-disable-next-line
 //import useTimedMessage from "../hooks/useTimedMessage";
@@ -95,14 +96,15 @@ function ProfileForm() {
 
   return (
       <div className="col-md-6 col-lg-4 offset-md-3 offset-lg-4">
-        <h3>Profile</h3>
-        <div className="card">
+        <h1>Edit Profile</h1>
+        <div className="profile-form card">
           <div className="card-body">
             <form>
-              <div className="form-group">
-                <label>Username</label>
-                <p className="form-control-plaintext">{formData.username}</p>
+
+              <div className="form-group form-user">
+                <label><h3>Username: {formData.username}</h3> </label>
               </div>
+
               <div className="form-group">
                 <label>First Name</label>
                 <input
@@ -112,6 +114,7 @@ function ProfileForm() {
                     onChange={handleChange}
                 />
               </div>
+
               <div className="form-group">
                 <label>Last Name</label>
                 <input
@@ -121,6 +124,7 @@ function ProfileForm() {
                     onChange={handleChange}
                 />
               </div>
+
               <div className="form-group">
                 <label>Email</label>
                 <input
@@ -130,6 +134,7 @@ function ProfileForm() {
                     onChange={handleChange}
                 />
               </div>
+
               <div className="form-group">
                 <label>Confirm password to make changes:</label>
                 <input

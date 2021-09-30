@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import JoblyApi from "./api";
 import JobCard from "./JobCard";
+import "./CompanyDetail.css"
 
 /**  Makes API call to show details of a specific company.
  * 
@@ -35,7 +36,7 @@ function CompanyDetail() {
 
   return (
     <div className="CompanyDetail col-md-8 offset-md-2">
-      <h4>{name}</h4>
+      <h2>{name}</h2>
       <p>{description}</p>
       {jobs.map(job =>
         <JobCard key={job.id} job={job} />

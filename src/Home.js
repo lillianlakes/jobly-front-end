@@ -23,13 +23,13 @@ function Home() {
           )
           :
           (
-            <p>
-              <Link className="btn btn-primary font-weight-bold mr-3"
+            <div class="home-button-container">
+              <Link className="home-button btn btn-primary font-weight-bold mr-3"
                 to="/login">Log in
               </Link>
-              <Link className="btn btn-primary font-weight-bold"
+              <Link className="home-button btn btn-primary font-weight-bold"
                 to="/signup">Sign Up</Link> 
-            </p>
+            </div>
           )}
       </div>
     </div>

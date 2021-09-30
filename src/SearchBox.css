@@ -1,5 +1,21 @@
-.SearchBox input:focus {
+.searchbar {
+  border-radius: 3px 0px 0px 3px;
+}
+
+.searchbar:focus {
     box-shadow: none;
-    border-color: #ced4da;
+    border-color: #ced4da; 
   }
-  
+
+.form-inline {
+  display: flex;
+  padding: 1rem 2rem;
+  margin-top: -4rem;
+}
+
+.searchbutton {
+  border-radius: 0px 3px 3px 0px;
+}
+
+
+

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import JoblyApi from "./api";
 import CompanyCard from "./CompanyCard";
 import SearchBox from "./SearchBox";
+import "./CompanyList.css";
 
 /**  Makes API call to show all companies or filter specific companies 
  *   by name.
@@ -38,14 +39,17 @@ function CompanyList() {
       <SearchBox search={search} />
       {companies.length
         ? (
-          <div className="CompanyList-list">
-            {companies.map(company =>
-              <CompanyCard
-                key={company.handle}
-                company={company}
-              />
-            )}
-          </div>
+        <div>
+            <h1>Companies</h1>
+            <div className="CompanyList-list">
+              {companies.map(company =>
+                <CompanyCard
+                  key={company.handle}
+                  company={company}
+                />
+              )}
+            </div>
+        </div>
         ) : (
           <p className="lead">Sorry, no results were found!</p>
         )}

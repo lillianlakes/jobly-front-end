@@ -11,15 +11,14 @@ import "./JobCard.css";
 */
 function JobCard({ job }) {
 
-  const { title, salary, equity, companyName } = job;
+  const { title, salary, equity } = job;
 
   return (
     <div className="JobCard card">
       <div className="card-body">
-        <h6 className="card-title">{title}</h6>
-        <p>{companyName}</p>
-        {salary && <div><small>Salary: {salary}</small></div>}
-        {equity !== undefined && <div><small>Equity: {equity}</small></div>}
+        <h5 className="card-title">{title}</h5>
+        <p>{salary && <div><small>Salary: {salary}</small></div>}</p>
+        <p>{equity !== undefined && <div><small>Equity: {equity}</small></div>}</p>
       </div>
     </div>
   )

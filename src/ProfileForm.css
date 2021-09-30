@@ -1,0 +1,16 @@
+.form-group {
+    text-align: left;
+}
+
+.form-user {
+    text-align: center;
+}
+
+.form-user h3 {
+    color: black;
+    margin: 1rem 0 2rem;
+}
+
+.profile-form {
+    margin: 0 2rem;
+}

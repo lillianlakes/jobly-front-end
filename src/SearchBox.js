@@ -29,13 +29,13 @@ function SearchBox({ search }) {
     <div className="SearchBox mb-4">
       <form className="form-inline" onSubmit={handleSubmit}>
         <input
-          className="form-control form-control-lg flex-grow-1"
+          className="searchbar form-control form-control-lg flex-grow-1"
           name="searchBox"
           value={term}
           onChange={handleChange}
           placeholder="Enter search term..."
         />
-        <button type="submit" className="btn btn-lg btn-primary">
+        <button type="submit" className="searchbutton btn btn-lg btn-primary">
           Search!
         </button>
       </form>

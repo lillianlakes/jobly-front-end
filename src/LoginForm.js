@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from 'react-router-dom';
+import "./LoginForm.css";
 
 
 /** Form for logging in.
@@ -36,7 +37,7 @@ function LoginForm({ initialFormData = defaultInitialFormData, logIn }) {
   }
 
   return (
-    <div className="LoginForm">
+    <div className="LoginForm col-md-6 col-lg-4 offset-md-3 offset-lg-4">
       <h1>Log In</h1>
       <form className="LoginForm-formfields" onSubmit={handleSubmit}>
         <div className="form-group">
@@ -66,7 +67,7 @@ function LoginForm({ initialFormData = defaultInitialFormData, logIn }) {
           />
         </div>
 
-        <button className="btn-primary rig btn btn-sm LoginForm-btn">
+        <button className="btn-primary btn btn-md LoginForm-btn">
           Submit
         </button>
       </form>

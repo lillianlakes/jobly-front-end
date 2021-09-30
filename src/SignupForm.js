@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from 'react-router-dom';
+import "./SignupForm.css"
 
 /** Form for signing up.
  *
@@ -34,7 +35,7 @@ function SignupForm({ initialFormData = defaultInitialFormData, register }) {
   }
 
   return (
-    <div className="SignupForm">
+    <div className="SignupForm col-md-6 col-lg-4 offset-md-3 offset-lg-4">
       <h1>Sign Up</h1>
       <form className="SignupForm-formfields" onSubmit={handleSubmit}>
         <div className="form-group">
@@ -52,6 +53,7 @@ function SignupForm({ initialFormData = defaultInitialFormData, register }) {
 
         <div className="form-group">
           <input
+            type="password"
             id="password"
             name="password"
             className="form-control"
@@ -102,7 +104,7 @@ function SignupForm({ initialFormData = defaultInitialFormData, register }) {
           />
         </div>
 
-        <button className="btn-primary rig btn btn-sm SignupForm-btn">
+        <button className="btn-primary btn btn-md SignupForm-btn">
           Submit
         </button>
       </form>
