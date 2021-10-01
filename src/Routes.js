@@ -9,6 +9,7 @@ import SignupForm from "./SignupForm";
 import ProfileForm from "./ProfileForm";
 import UserContext from "./UserContext";
 import PrivateRoute from "./PrivateRoute";
+import Applications from "./Applications";
 
 /** Routes to different endpoints and redirects to home if an endpoint
  *  if not found. 
@@ -39,6 +40,9 @@ function Routes({ logIn, register }) {
             </Route>
             <PrivateRoute exact path="/profile" >
                 <ProfileForm />
+            </PrivateRoute>
+            <PrivateRoute exact path="/applications" >
+                <Applications />
             </PrivateRoute>
             {/* <Route><NotFound /></Route> */}
             <Redirect to="/" />

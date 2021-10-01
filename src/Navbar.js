@@ -31,6 +31,10 @@ function NavBar({ logOut }) {
               </Nav.Item>
 
               <Nav.Item className="nav-item mr-4">
+                <NavLink className="nav-link" exact to="/applications">Applications</NavLink>
+              </Nav.Item>
+
+              <Nav.Item className="nav-item mr-4">
                 <NavLink className="nav-link" exact to="/profile">Profile</NavLink>
               </Nav.Item>
 

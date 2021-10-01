@@ -25,9 +25,6 @@ function JobCard({ job }) {
     setCurrentUser(updatedUser);
   }
 
-  console.log(currentUser, "<---- CURRENT USER OBJ")
-  console.log(currentUser.applications, "<---- LIST OF APPLICATIONS")
-
   return (
     <div className="JobCard card">
       <div className="card-body">
