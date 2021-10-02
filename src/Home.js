@@ -3,8 +3,6 @@ import UserContext from "./UserContext";
 import { Link } from "react-router-dom";
 import "./Home.css"
 
-
-
 /** Goes to the homepage, displays differently depending on whether user is
  * logged in.
  */
@@ -13,8 +11,9 @@ function Home() {
   console.log("Home", currentUser)
 
   return (
-    <div className="Home">
-      <div className="container text-center">
+    <div className="Home" style={{backgroundImage: "url(/ian-dooley-unsplash.jpeg)",
+    backgroundRepeat: 'no-repeat', backgroundSize: 'cover'}}>
+      <div className="container text-center jobly-welcome">
         <h1 className="mb-4 font-weight-bold">Jobly</h1>
         <p className="lead">All the jobs in one, convenient place.</p>
         {currentUser.username ?

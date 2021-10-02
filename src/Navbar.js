@@ -15,7 +15,7 @@ function NavBar({ logOut }) {
   return (
     <Navbar collapseOnSelect expand="lg">
 
-      <Nav className="Navigation navbar navbar-expand-md navbar-dark bg-dark">
+      <Nav className="Navigation navbar navbar-custom navbar-expand-md navbar-dark bg-dark">
         <NavbarBrand as={Link} className="navbar-brand me-auto pl-0" exact to="/"><h4>Jobly</h4></NavbarBrand>
   
         <Navbar.Toggle />

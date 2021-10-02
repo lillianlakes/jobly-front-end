@@ -4,9 +4,6 @@ import JoblyApi from "./api";
 import UserContext from "./UserContext";
 import "./ProfileForm.css";
 
-// eslint-disable-next-line
-//import useTimedMessage from "../hooks/useTimedMessage";
-
 /** 
  * Borrowed from the solution and adapted to fit our app
  * 

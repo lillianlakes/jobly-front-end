@@ -29,7 +29,7 @@ function Applications() {
       setIsLoading(false);
     }
     getJobs();
-  }, []);
+  }, [currentUser.applications]);
 
   if (isLoading) return <i>Loading...</i>;
 

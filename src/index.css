@@ -6,7 +6,8 @@ html {
 body {
   /* background-color: #F8F8F8; */
   /* background-color: linear-gradient(blue, black); */
-  background: linear-gradient(156deg, #020024 0%, #090979 80%, #3c7e8b) no-repeat fixed;
+  /* background: linear-gradient(156deg, #020024 0%, #090979 80%, #3c7e8b) no-repeat fixed; */
+  /* background: linear-gradient(156deg, #6b6a94 0%, #e7e7fc 80%, #ffffff) no-repeat fixed; */
   margin: 0;
   padding: 0 0 30px 0;
   font-family: "Open Sans", sans-serif;
@@ -16,12 +17,12 @@ body {
 
 
 h1, h2, h3, h4, .lead {
-  color: white;
+  color: rgb(46, 46, 46);
 }
 
 h4 + p,
 h2 + p {
-  color: white;
+  color: rgb(58, 58, 58);
 }
 
 p {

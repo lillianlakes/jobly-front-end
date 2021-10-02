@@ -3,13 +3,26 @@
     height: calc(100vh - 150px);
     display: flex;
     align-items: center;
+    margin-top: -75px;
   }
   
 .home-button-container {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .home-button {
   margin: 0.25rem;
+}
+
+.jobly-welcome {
+  background-color: rgba(250, 248, 254, 0.879);
+  width: 60%;
+  padding: 3rem 1rem;
+  border-radius: 5px;
+}
+
+h1 {
+  /* font-size: 4rem; */
 }
