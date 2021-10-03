@@ -31,10 +31,8 @@ function ProfileForm() {
     password: "",
   });
   const [formErrors, setFormErrors] = useState([]);
-
-  // switch to use our fancy limited-time-display message hook
   const [saveConfirmed, setSaveConfirmed] = useState(false);
-  // const [saveConfirmed, setSaveConfirmed] = useTimedMessage()
+  
 
   console.debug(
       "ProfileForm",

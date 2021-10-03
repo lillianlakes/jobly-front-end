@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from 'react-router-dom';
 import "./LoginForm.css";
+import Alert from "./Alert";
 
 
 /** Form for logging in.
@@ -12,10 +13,11 @@ import "./LoginForm.css";
  * App -> Routes -> LoginForm
  */
 
-const defaultInitialFormData = { username: "", password: "" }; // make this all caps for truly unchanging global var
+const defaultInitialFormData = { username: "", password: "" }; 
 
 function LoginForm({ initialFormData = defaultInitialFormData, logIn }) {
   const [formData, setFormData] = useState(initialFormData);
+  const [formErrors, setFormErrors] = useState([]);
   const history = useHistory();
 
 
@@ -26,13 +28,21 @@ function LoginForm({ initialFormData = defaultInitialFormData, logIn }) {
       ...formData,
       [input.name]: input.value,
     }));
+    setFormErrors([]);
   }
 
   /** Call parent function, clear form, and redirect user to /companies. */
-  async function handleSubmit(evt) { // think about a try/catch for bad logIn (don't clear form data/give feedback)
+  async function handleSubmit(evt) { 
     evt.preventDefault();
-    await logIn(formData);
-    setFormData(initialFormData); // this is unnecessary due to the redirect, so can get rid of, but not bad to leave it
+    
+    try {
+      await logIn(formData);
+    } catch (errors) {
+      setFormErrors(errors);
+      return;
+    }
+
+    setFormData(initialFormData);
     history.push("/companies");
   }
 
@@ -66,6 +76,10 @@ function LoginForm({ initialFormData = defaultInitialFormData, logIn }) {
             required
           />
         </div>
+
+        {formErrors.length
+                  ? <Alert type="danger" messages={formErrors} />
+                  : null}
 
         <button className="btn-primary btn btn-md LoginForm-btn">
           Submit

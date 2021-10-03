@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from 'react-router-dom';
 import "./SignupForm.css"
+import Alert from "./Alert";
 
 /** Form for signing up.
  *
@@ -15,6 +16,7 @@ const defaultInitialFormData = { username: "", password: "", firstName: "", last
 
 function SignupForm({ initialFormData = defaultInitialFormData, register }) {
   const [formData, setFormData] = useState(initialFormData);
+  const [formErrors, setFormErrors] = useState([]);
   const history = useHistory();
 
   /** Update form input. */
@@ -24,13 +26,21 @@ function SignupForm({ initialFormData = defaultInitialFormData, register }) {
       ...formData,
       [input.name]: input.value,
     }));
+    setFormErrors([]);
   }
 
   /** Call parent function, clear form, redirect user to /companies. */
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
-    register(formData);
+    try {
+      await register(formData);
+    } catch (errors) {
+      setFormErrors(errors);
+      return;
+    }
+    
     setFormData(initialFormData);
+    setFormErrors([]);
     history.push("/companies");
   }
 
@@ -103,6 +113,10 @@ function SignupForm({ initialFormData = defaultInitialFormData, register }) {
             required
           />
         </div>
+
+        {formErrors.length
+                  ? <Alert type="danger" messages={formErrors} />
+                  : null}
 
         <button className="btn-primary btn btn-md SignupForm-btn">
           Submit

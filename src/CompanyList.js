@@ -16,23 +16,30 @@ import "./CompanyList.css";
  *   App -> Routes -> CompanyList -> [SearchBox, CompanyCard]
 */
 function CompanyList() {
-
   const [companies, setCompanies] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [companyHandle, setCompanyHandle] = useState("");
 
-  async function search(companyName) {
-    let companiesResults = await JoblyApi.request(`companies?name=${companyName}`);
-    setCompanies(companiesResults.companies);
+  function search(companyHandle) {
+    setCompanyHandle(companyHandle);
   }
 
   useEffect(function getCompaniesWhenMounted() {
     async function getCompanies() {
-      let companiesResults = await JoblyApi.request('companies')
+      let companiesResults;
+      
+      if (!companyHandle) {
+        companiesResults = await JoblyApi.request('companies')
+      } else {
+        companiesResults = await JoblyApi.request(`companies?name=${companyHandle}`);
+      }
       setCompanies(companiesResults.companies);
+      setIsLoading(false);
     }
     getCompanies();
-  }, []);
+  }, [companyHandle]);
 
-  if (companies.length === 0) return <i>Loading...</i>;
+  if (isLoading) return <i>Loading...</i>;
 
   return (
     <div className="CompanyList col-md-8 offset-md-2">

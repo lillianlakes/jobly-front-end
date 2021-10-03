@@ -44,7 +44,6 @@ function Routes({ logIn, register }) {
             <PrivateRoute exact path="/applications" >
                 <Applications />
             </PrivateRoute>
-            {/* <Route><NotFound /></Route> */}
             <Redirect to="/" />
         </Switch>
     )

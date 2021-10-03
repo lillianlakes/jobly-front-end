@@ -2,14 +2,11 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 import Routes from "./Routes";
 import NavBar from "./Navbar";
-import UserContext from "./UserContext"; //change this to lower case for the file name??
+import UserContext from "./UserContext"; 
 import './App.css';
 import JoblyApi from "./api";
 import jwt from "jsonwebtoken"
 
-
-// import useLocalStorage from "./hooks/useLocalStorage";
-// when the page reloads, look in localStorage to see if there is a token there
 /**
  *  App: 
  *  - Makes API calls to get the current user, stores the user's token, and sets the current user.
@@ -20,38 +17,25 @@ import jwt from "jsonwebtoken"
  */
 
 function App() {
-  // think about state like your application is "in this state" - like "i am currently fetching" or "all done" or "not started yet"
   
   const initialToken = JSON.parse(localStorage.getItem("token")) || null;  
-  
-  // console.log(`initialToken `, initialToken);
-  // console.log(`typeof initialToken `, typeof initialToken);
-
   const [token, setToken] = useState(initialToken);
-  // const [token, setToken] = useState(null);
   const [currentUser, setCurrentUser] = useState("fetching"); // or could have a user, or an empty object, or set it to string like "waiting" or fetching
-  // could add isLoggingIn
-  // console.log("App", token, currentUser)
-
-
 
   /**  
    *   Makes API call to get the current user given a username and token.
    *   Sets the currentUser.
    */
-  useEffect(function updateUserWithTokenChange() {  // when we refresh, it renders, but there is no user yet
-    // console.log("App updateUserWithTokenChange", token)
-    
-    async function fetchCurrentUser(token) { // change this to fetch or update, not get - get would actually return the current user
+  useEffect(function updateUserWithTokenChange() {   
+    async function fetchCurrentUser(token) { 
       setCurrentUser("fetching");
+
       let { username } = jwt.decode(token);
-      // console.log("USERNAME AFTER JWT.DECODE: ", username);
       let user = await JoblyApi.getCurrentUser(username, token);
-      // console.log("ABOUT TO SET CURRENT USER----> USER FROM API IS: ", user)
+  
       setCurrentUser(user);
-      // console.log("JUST SET CURRENT USER BUT WILL SHOW PREVIOUS STATE", currentUser) 
     }
-    // if (currentUser === "fetching") return;
+ 
     if (token) fetchCurrentUser(token);
     if (!token) setCurrentUser({});
   }, [token]);
@@ -62,8 +46,7 @@ function App() {
    */
   async function logIn({ username, password }) {
     let newToken = await JoblyApi.login(username, password);
-    setToken(() => newToken); // never wrong to do it this way, but it's unnecessary to use the functional form here to set the token 
-    // since the current state doesn't rely on the previous state.
+    setToken(() => newToken);
     return localStorage.setItem("token", JSON.stringify(newToken));
   }
 
@@ -82,26 +65,19 @@ function App() {
    *   Logs the currentUser out by resetting the token and currentUser to null.
    */
   function logOut() {
-    //setCurrentUser(null); // might be better to do this inside useEffect, (if !token, set currentUser to null)
-    setToken(null); // this would stay here, but the currentUsers could be grouped together
+    setToken(null);
     return localStorage.setItem("token", JSON.stringify(null));
   }
 
-  // console.log("render, currentUser", currentUser, "FROM APP");
-
-  // console.log(`right before rendering app, localStorage `, localStorage);
-  // console.log(`typeof localStorage `, typeof localStorage);
-
   return (
     <div className="App">
-      <UserContext.Provider value={{currentUser, setCurrentUser }}> {/** must use two curly braces to ensure that this works when you destructure in children INVESTIGATE MORE  */}
+      <UserContext.Provider value={{currentUser, setCurrentUser }}> 
         <BrowserRouter>
           {currentUser === "fetching" ?
             <i>loading...</i>
             :
             <div>
-              <NavBar logOut={logOut} /> {/* capitalizing the in/out can help to clarify intent/purpose ---- here we don't want to send anyone anywhere while we are checking
-          if statement: if someone is currently logging in, don't send them anywhere */}
+              <NavBar logOut={logOut} /> 
               <Routes logIn={logIn} register={register} />
             </div> }
         </BrowserRouter>

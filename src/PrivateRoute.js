@@ -12,8 +12,8 @@ import UserContext from "./UserContext";
  */
 
 function PrivateRoute({ exact, path, children }) {
-    const { currentUser } = useContext(UserContext); // this is destructuring the object and getting the currentUser key (need two curly braces in App to make this work)
-  console.log("CURRENTUSER IN PRIVATE ROUTE------->", currentUser)
+    const { currentUser } = useContext(UserContext); 
+  
     console.debug(
         "PrivateRoute",
         "exact=", exact,

@@ -12,6 +12,7 @@ import UserContext from "./UserContext";
  * 
  *   App -> Routes -> Applications -> [JobCard, ...]
 */
+
 function Applications() {
 
   const [jobs, setJobs] = useState([]);
