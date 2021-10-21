@@ -14,10 +14,9 @@ This project is a part of <a href="https://www.rithmschool.com/">Rithm School's<
   
 ### Getting started:
 In the project directory, you can run:
-- `npm i` to install all package and package dependencies
+- `npm i` to install packages and dependencies
 
 ### Functionality:
-
 - Users can do the following:
   - Login, signup, edit profile
   - Search for a job or company
