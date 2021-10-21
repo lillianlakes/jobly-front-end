@@ -11,11 +11,10 @@ function Home() {
   console.log("Home", currentUser)
 
   return (
-    <div className="Home" style={{backgroundImage: "url(/ian-dooley-unsplash.jpeg)",
-    backgroundRepeat: 'no-repeat', backgroundSize: 'cover'}}>
+    <div className="Home">
       <div className="container text-center jobly-welcome">
         <h1 className="mb-4 font-weight-bold">Jobly</h1>
-        <p className="lead">All the jobs in one, convenient place.</p>
+        <p className="lead font-weight-bold">Your One-Stop Shop for Job Applications and Company Research</p>
         {currentUser.username ?
           (
             <h2>Welcome back, {currentUser.firstName}!</h2>
