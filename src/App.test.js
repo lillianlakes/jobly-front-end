@@ -3,6 +3,6 @@ import App from './App';
 
 test('renders Jobly link', () => {
   render(<App />);
-  const linkElement = screen.getByText(/Jobly/i);
+  const linkElement = screen.getByRole("heading", { level: 1, name: /Jobly/i });
   expect(linkElement).toBeInTheDocument();
 });

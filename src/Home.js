@@ -8,7 +8,6 @@ import "./Home.css"
  */
 function Home() {
   const { currentUser } = useContext(UserContext);
-  console.log("Home", currentUser)
 
   return (
     <div className="Home">

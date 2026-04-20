@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Home from "./Home";
 import CompanyList from "./CompanyList.js";
@@ -7,7 +7,6 @@ import JobList from "./JobList";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 import ProfileForm from "./ProfileForm";
-import UserContext from "./UserContext";
 import PrivateRoute from "./PrivateRoute";
 import Applications from "./Applications";
 
@@ -16,8 +15,6 @@ import Applications from "./Applications";
  *  Private Routes check for a current user - see PrivateRoute.js
  */
 function Routes({ logIn, register }) {
-    const { currentUser } = useContext(UserContext);
-    console.log("Routes: currentUser", currentUser);
     return (
         <Switch>
             <Route exact path="/" >

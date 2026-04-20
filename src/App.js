@@ -30,11 +30,20 @@ function App() {
     async function fetchCurrentUser(token) { 
       setCurrentUser("fetching");
 
-      let { username } = jwt.decode(token);
-      let user = await JoblyApi.getCurrentUser(username, token);
-  
-      setCurrentUser(user);
+      try {
+        let decodedToken = jwt.decode(token);
+        if (!decodedToken?.username) throw new Error("Invalid token");
+
+        let user = await JoblyApi.getCurrentUser(decodedToken.username, token);
+        setCurrentUser(user);
+      } catch {
+        setToken(null);
+        setCurrentUser({});
+        localStorage.setItem("token", JSON.stringify(null));
+      }
     }
+
+    JoblyApi.token = token;
  
     if (token) fetchCurrentUser(token);
     if (!token) setCurrentUser({});

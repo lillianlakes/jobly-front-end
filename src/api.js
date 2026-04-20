@@ -15,8 +15,6 @@ class JoblyApi {
 
   // get request for companies or jobs
   static async request(endpoint, data = {}, method = "get") {
-    console.debug("API Call:", endpoint, data, method);
-
     const url = `${BASE_URL}/${endpoint}`;
     const headers = { Authorization: `Bearer ${JoblyApi.token}` };
     const params = (method === "get")
@@ -48,9 +46,6 @@ class JoblyApi {
       "post");
     JoblyApi.token = res.token;
 
-    console.log(`res.token `, res.token);
-    console.log(`right after login, localStorage `, localStorage);
-
     return JoblyApi.token;
   }
 
@@ -72,7 +67,6 @@ class JoblyApi {
 
   /** Get the current user given a valid username and token */
   static async getCurrentUser(username) {
-    console.log(username, "USERNAME INSIDE GETCURRENTUSER")
     let res = await this.request(`users/${username}`)
     return res.user;
   }
@@ -87,7 +81,6 @@ class JoblyApi {
     /** User applies for a job. */
 
     static async applyToJob(username, id) {
-      console.log("IN API - APPLY TO JOB")
       let res = await this.request(`users/${username}/jobs/${id}`);
       return res;
     }

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import JoblyApi from "./api";
 import JobCard from "./JobCard";
 import UserContext from "./UserContext";
@@ -18,19 +18,28 @@ function Applications() {
   const [jobs, setJobs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { currentUser } = useContext(UserContext);
+  const applications = useMemo(() => {
+    return Array.isArray(currentUser?.applications)
+      ? currentUser.applications.map(Number)
+      : [];
+  }, [currentUser]);
 
   useEffect(function getJobsWhenMounted() {
     async function getJobs() {
-      let appliedJobs;
+      if (applications.length === 0) {
+        setJobs([]);
+        setIsLoading(false);
+        return;
+      }
 
-        let jobsResults = await JoblyApi.request('jobs')
-        appliedJobs = jobsResults.jobs.filter(j => currentUser.applications.includes(j.id));
+      let jobsResults = await JoblyApi.request('jobs')
+      let appliedJobs = jobsResults.jobs.filter(j => applications.includes(Number(j.id)));
      
       setJobs(appliedJobs);
       setIsLoading(false);
     }
     getJobs();
-  }, [currentUser.applications]);
+  }, [applications]);
 
   if (isLoading) return <i>Loading...</i>;
 
