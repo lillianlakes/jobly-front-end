@@ -20,6 +20,15 @@ function Home() {
 
   const isLoggedIn = currentUser && currentUser !== "fetching" && currentUser.username;
 
+  function formatRecommendationScore(score) {
+    const numericScore = Number(score);
+
+    if (!Number.isFinite(numericScore)) return null;
+
+    const normalizedScore = Math.min(100, Math.max(0, Math.round(numericScore)));
+    return `${normalizedScore}%`;
+  }
+
   return (
     <div className={`Home ${isLoggedIn ? "Home--logged-in" : ""}`}>
       <div className="container home-layout">
@@ -83,9 +92,9 @@ function Home() {
                               {rec.companyHandle}
                             </Link>
                           </div>
-                          {typeof rec.score === "number" ? (
-                            <span className="recommendation-score">{Math.round(rec.score * 100)}%</span>
-                          ) : null}
+                          {formatRecommendationScore(rec.score) ? (
+                              <span className="recommendation-score">{formatRecommendationScore(rec.score)}</span>
+                            ) : null}
                         </div>
 
                         <div className="recommendation-details">
