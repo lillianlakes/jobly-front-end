@@ -18,12 +18,14 @@ function JobCard({ job }) {
   const [isApplying, setIsApplying] = useState(false);
 
   const applications = useMemo(() => {
-    return Array.isArray(currentUser?.applications) ? currentUser.applications : [];
-  }, [currentUser]);
+    const appArray = currentUser?.applications;
+    if (!Array.isArray(appArray)) return [];
+    return appArray.map(Number);
+  }, [currentUser?.applications]);
 
   const isApplied = useMemo(() => {
     const numericId = Number(id);
-    return applications.map(Number).includes(numericId);
+    return applications.includes(numericId);
   }, [applications, id]);
 
   async function handleSubmit() {
@@ -37,10 +39,10 @@ function JobCard({ job }) {
 
       setCurrentUser(prevUser => {
         const prevApplications = Array.isArray(prevUser?.applications)
-          ? prevUser.applications
+          ? prevUser.applications.map(Number)
           : [];
 
-        if (prevApplications.map(Number).includes(jobId)) return prevUser;
+        if (prevApplications.includes(jobId)) return prevUser;
 
         return {
           ...prevUser,
@@ -68,11 +70,14 @@ function JobCard({ job }) {
           <button className="btn btn-primary btn-sm apply-btn"
             onClick={handleSubmit}
             disabled={isApplying}
+            aria-label={`Apply for ${title}`}
           >
             {isApplying ? "Applying..." : "Apply"}
           </button>
           :
-          <div className="applied"><p>Applied!</p></div>
+          <button className="btn btn-sm applied-btn" disabled aria-label={`Already applied for ${title}`}>
+            Applied!
+          </button>
         }
       </div>
     </div>

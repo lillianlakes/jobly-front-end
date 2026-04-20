@@ -64,3 +64,20 @@
     padding: 0.55rem 1rem;
     font-weight: 700;
 }
+
+.applied-btn {
+    margin-top: 1rem;
+    margin-bottom: 0;
+    border-radius: 999px;
+    min-width: 110px;
+    color: #1f8a4c;
+    background: rgba(31, 138, 76, 0.1);
+    border: 1px solid rgba(31, 138, 76, 0.2) !important;
+    font-weight: 700;
+    cursor: not-allowed;
+}
+
+.applied-btn:hover {
+    background: rgba(31, 138, 76, 0.1);
+    color: #1f8a4c;
+}

@@ -19,24 +19,33 @@ function Applications() {
   const [isLoading, setIsLoading] = useState(true);
   const { currentUser } = useContext(UserContext);
   const applications = useMemo(() => {
-    return Array.isArray(currentUser?.applications)
-      ? currentUser.applications.map(Number)
-      : [];
-  }, [currentUser]);
+    const appArray = currentUser?.applications;
+    if (!Array.isArray(appArray)) return [];
+    return appArray.map(Number).sort((a, b) => a - b);
+  }, [currentUser?.applications]);
 
   useEffect(function getJobsWhenMounted() {
     async function getJobs() {
-      if (applications.length === 0) {
+      if (!applications || applications.length === 0) {
         setJobs([]);
         setIsLoading(false);
         return;
       }
 
-      let jobsResults = await JoblyApi.request('jobs')
-      let appliedJobs = jobsResults.jobs.filter(j => applications.includes(Number(j.id)));
+      try {
+        let jobsResults = await JoblyApi.request('jobs');
+        let appliedJobs = jobsResults.jobs.filter(job => {
+          const jobId = Number(job.id);
+          return applications.includes(jobId);
+        });
 
-      setJobs(appliedJobs);
-      setIsLoading(false);
+        setJobs(appliedJobs);
+      } catch (err) {
+        console.error("Error fetching applied jobs:", err);
+        setJobs([]);
+      } finally {
+        setIsLoading(false);
+      }
     }
     getJobs();
   }, [applications]);
