@@ -10,6 +10,8 @@ function RecommendedJobCard({ recommendation }) {
     id,
     title,
     companyHandle,
+    companyName,
+    name,
     salary,
     equity,
     score,
@@ -86,6 +88,17 @@ function RecommendedJobCard({ recommendation }) {
     ? `${Math.min(100, Math.max(0, Math.round(Number(score))))}%`
     : null;
 
+  const companyDisplayName = useMemo(() => {
+    const explicitName = companyName || name;
+    if (explicitName) return explicitName;
+
+    return String(companyHandle || "")
+      .split("-")
+      .filter(Boolean)
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  }, [companyHandle, companyName, name]);
+
   return (
     <article className="recommendation-card card">
       <div className="card-body recommendation-card-body">
@@ -93,7 +106,7 @@ function RecommendedJobCard({ recommendation }) {
           <div>
             <h3 className="recommendation-title">{title}</h3>
             <Link className="recommendation-company" to={`/companies/${companyHandle}`}>
-              {companyHandle}
+              {companyDisplayName}
             </Link>
           </div>
           {scoreLabel ? <span className="recommendation-score">{scoreLabel}</span> : null}
