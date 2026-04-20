@@ -1,0 +1,114 @@
+.Recommendations {
+  padding-top: 2rem;
+}
+
+.Recommendations .recommendations-content {
+  padding: 1.4rem;
+}
+
+.Recommendations .recommendations-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.Recommendations .recommendations-meta {
+  margin: 0;
+  color: #5d6b7d;
+  font-size: 1.05rem;
+}
+
+.Recommendations .refresh-recommendations-btn {
+  border-radius: 999px;
+  min-width: 220px;
+}
+
+.Recommendations .recommendations-state {
+  padding: 1.1rem 1.2rem;
+  border-radius: 20px;
+  background: rgba(75, 138, 216, 0.08);
+  color: #214a74;
+}
+
+.Recommendations .recommendations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 1.5rem;
+}
+
+.Recommendations .recommendation-card {
+  border-radius: 22px;
+  border: 1px solid rgba(75, 138, 216, 0.12);
+  box-shadow: 0 12px 26px rgba(15, 23, 42, 0.06);
+}
+
+.Recommendations .recommendation-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.Recommendations .recommendation-card-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.Recommendations .recommendation-title {
+  margin: 0;
+  color: #163f69;
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.Recommendations .recommendation-company {
+  display: inline-block;
+  margin-top: 0.25rem;
+  color: #4b8ad8;
+  font-weight: 700;
+}
+
+.Recommendations .recommendation-score {
+  flex-shrink: 0;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(31, 138, 76, 0.12);
+  color: #1f8a4c;
+  font-weight: 800;
+}
+
+.Recommendations .recommendation-details p {
+  margin-bottom: 0.25rem;
+  color: #536375;
+}
+
+.Recommendations .recommendation-reasons-label {
+  margin-bottom: 0.4rem;
+  color: #214a74;
+  font-weight: 800;
+}
+
+.Recommendations .recommendation-reasons ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: #5a6675;
+}
+
+.Recommendations .recommendation-reasons li + li {
+  margin-top: 0.35rem;
+}
+
+@media (max-width: 768px) {
+  .Recommendations .recommendations-topbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .Recommendations .refresh-recommendations-btn {
+    width: 100%;
+    min-width: 0;
+  }
+}

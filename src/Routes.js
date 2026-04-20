@@ -9,6 +9,7 @@ import SignupForm from "./SignupForm";
 import ProfileForm from "./ProfileForm";
 import PrivateRoute from "./PrivateRoute";
 import Applications from "./Applications";
+import Recommendations from "./Recommendations";
 
 /** Routes to different endpoints and redirects to home if an endpoint
  *  if not found. 
@@ -27,7 +28,7 @@ function Routes({ logIn, register }) {
         {<JobList />}
       </PrivateRoute>
       <PrivateRoute exact path="/recommendations" >
-        <Home />
+        <Recommendations />
       </PrivateRoute>
       <PrivateRoute exact path="/companies/:handle" >
         {<CompanyDetail />}
