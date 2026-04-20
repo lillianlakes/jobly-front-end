@@ -32,14 +32,14 @@ function ProfileForm() {
   });
   const [formErrors, setFormErrors] = useState([]);
   const [saveConfirmed, setSaveConfirmed] = useState(false);
-  
+
 
   console.debug(
-      "ProfileForm",
-      "currentUser=", currentUser,
-      "formData=", formData,
-      "formErrors=", formErrors,
-      "saveConfirmed=", saveConfirmed,
+    "ProfileForm",
+    "currentUser=", currentUser,
+    "formData=", formData,
+    "formErrors=", formErrors,
+    "saveConfirmed=", saveConfirmed,
   );
 
   /** on form submit:
@@ -66,7 +66,7 @@ function ProfileForm() {
     try {
       updatedUser = await JoblyApi.saveProfile(currentUser.username, profileData);
     } catch (errors) {
-    //   debugger;
+      //   debugger;
       setFormErrors(errors);
       return;
     }
@@ -90,80 +90,80 @@ function ProfileForm() {
   }
 
   return (
-      <div className="page-shell profile-page-shell">
-        <div className="page-header">
-          <p className="page-kicker">Account center</p>
-          <h1 className="page-title">Profile</h1>
-          <p className="page-subtitle">Keep your account details current and make updates in a clean, distraction-free workspace.</p>
-        </div>
-        <div className="profile-form card content-card">
-          <div className="card-body profile-card-body">
-            <form className="profile-form-inner">
+    <div className="page-shell profile-page-shell">
+      <div className="page-header">
+        <p className="page-kicker">Account center</p>
+        <h1 className="page-title">Profile</h1>
+        <p className="page-subtitle">Keep your account details current and make updates in a clean, distraction-free workspace.</p>
+      </div>
+      <div className="profile-form card content-card">
+        <div className="card-body profile-card-body">
+          <form className="profile-form-inner">
 
-              <div className="form-group form-user">
-                <label><h3>Edit details for {currentUser.username}:</h3> </label>
-              </div>
+            <div className="form-group form-user">
+              <label><h3>Edit details for {currentUser.username}:</h3> </label>
+            </div>
 
-              <div className="form-group">
-                <label>First Name</label>
-                <input
-                    name="firstName"
-                    className="form-control"
-                    value={formData.firstName}
-                    onChange={handleChange}
-                />
-              </div>
+            <div className="form-group">
+              <label>First Name</label>
+              <input
+                name="firstName"
+                className="form-control"
+                value={formData.firstName}
+                onChange={handleChange}
+              />
+            </div>
 
-              <div className="form-group">
-                <label>Last Name</label>
-                <input
-                    name="lastName"
-                    className="form-control"
-                    value={formData.lastName}
-                    onChange={handleChange}
-                />
-              </div>
+            <div className="form-group">
+              <label>Last Name</label>
+              <input
+                name="lastName"
+                className="form-control"
+                value={formData.lastName}
+                onChange={handleChange}
+              />
+            </div>
 
-              <div className="form-group">
-                <label>Email</label>
-                <input
-                    name="email"
-                    className="form-control"
-                    value={formData.email}
-                    onChange={handleChange}
-                />
-              </div>
+            <div className="form-group">
+              <label>Email</label>
+              <input
+                name="email"
+                className="form-control"
+                value={formData.email}
+                onChange={handleChange}
+              />
+            </div>
 
-              <div className="form-group">
-                <label>Confirm password to make changes:</label>
-                <input
-                    type="password"
-                    name="password"
-                    className="form-control"
-                    value={formData.password}
-                    onChange={handleChange}
-                />
-              </div>
+            <div className="form-group">
+              <label>Confirm password to make changes:</label>
+              <input
+                type="password"
+                name="password"
+                className="form-control"
+                value={formData.password}
+                onChange={handleChange}
+              />
+            </div>
 
-              {formErrors.length
-                  ? <Alert type="danger" messages={formErrors} />
-                  : null}
+            {formErrors.length
+              ? <Alert type="danger" messages={formErrors} />
+              : null}
 
-              {saveConfirmed
-                  ?
-                  <Alert type="success" messages={["Updated successfully."]} />
-                  : null}
+            {saveConfirmed
+              ?
+              <Alert type="success" messages={["Updated successfully."]} />
+              : null}
 
-              <button
-                  className="btn btn-primary btn-block mt-4 profile-save-btn"
-                  onClick={handleSubmit}
-              >
-                Save Changes
-              </button>
-            </form>
-          </div>
+            <button
+              className="btn btn-primary btn-block mt-4 profile-save-btn"
+              onClick={handleSubmit}
+            >
+              Save Changes
+            </button>
+          </form>
         </div>
       </div>
+    </div>
   );
 }
 

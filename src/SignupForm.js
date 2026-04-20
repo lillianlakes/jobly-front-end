@@ -38,7 +38,7 @@ function SignupForm({ initialFormData = defaultInitialFormData, register }) {
       setFormErrors(errors);
       return;
     }
-    
+
     setFormData(initialFormData);
     setFormErrors([]);
     history.push("/companies");
@@ -130,8 +130,8 @@ function SignupForm({ initialFormData = defaultInitialFormData, register }) {
             </div>
 
             {formErrors.length
-                      ? <Alert type="danger" messages={formErrors} />
-                      : null}
+              ? <Alert type="danger" messages={formErrors} />
+              : null}
 
             <button className="btn-primary btn btn-md auth-submit-btn SignupForm-btn">
               Create Account

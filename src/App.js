@@ -21,6 +21,14 @@ function App() {
   const initialToken = JSON.parse(localStorage.getItem("token")) || null;
   const [token, setToken] = useState(initialToken);
   const [currentUser, setCurrentUser] = useState("fetching"); // or could have a user, or an empty object, or set it to string like "waiting" or fetching
+  const [aiRecommendations, setAiRecommendations] = useState([]);
+  const [aiMeta, setAiMeta] = useState(null);
+  const [aiLoading, setAiLoading] = useState(false);
+  const [aiError, setAiError] = useState(null);
+  const [recommendationsRefreshKey, setRecommendationsRefreshKey] = useState(0);
+  const currentUsername = currentUser && currentUser !== "fetching"
+    ? currentUser.username
+    : null;
 
   /**  
    *   Makes API call to get the current user given a username and token.
@@ -48,6 +56,42 @@ function App() {
     if (token) fetchCurrentUser(token);
     if (!token) setCurrentUser({});
   }, [token]);
+
+  useEffect(function loadAiRecommendations() {
+    if (!currentUsername) {
+      setAiRecommendations([]);
+      setAiMeta(null);
+      setAiError(null);
+      setAiLoading(false);
+      return;
+    }
+
+    async function fetchRecommendations() {
+      setAiLoading(true);
+      setAiError(null);
+
+      try {
+        const data = await JoblyApi.getAiRecommendations(currentUsername, 10);
+        setAiRecommendations(data?.recommendations || []);
+        setAiMeta(data?.meta || null);
+      } catch (err) {
+        const message = Array.isArray(err)
+          ? err[0]
+          : err?.message || "Could not load recommendations";
+        setAiError(message);
+        setAiRecommendations([]);
+        setAiMeta(null);
+      } finally {
+        setAiLoading(false);
+      }
+    }
+
+    fetchRecommendations();
+  }, [currentUsername, currentUser?.applications, recommendationsRefreshKey]);
+
+  function refreshRecommendations() {
+    setRecommendationsRefreshKey(key => key + 1);
+  }
 
   /**  
    *   Makes API call to log in the current user given a username and password.
@@ -80,7 +124,15 @@ function App() {
 
   return (
     <div className="App">
-      <UserContext.Provider value={{ currentUser, setCurrentUser }}>
+      <UserContext.Provider value={{
+        currentUser,
+        setCurrentUser,
+        aiRecommendations,
+        aiMeta,
+        aiLoading,
+        aiError,
+        refreshRecommendations,
+      }}>
         <BrowserRouter>
           {currentUser === "fetching" ?
             <i>loading...</i>

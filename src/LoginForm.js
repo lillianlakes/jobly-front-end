@@ -13,7 +13,7 @@ import Alert from "./Alert";
  * App -> Routes -> LoginForm
  */
 
-const defaultInitialFormData = { username: "", password: "" }; 
+const defaultInitialFormData = { username: "", password: "" };
 
 function LoginForm({ initialFormData = defaultInitialFormData, logIn }) {
   const [formData, setFormData] = useState(initialFormData);
@@ -32,9 +32,9 @@ function LoginForm({ initialFormData = defaultInitialFormData, logIn }) {
   }
 
   /** Call parent function, clear form, and redirect user to /companies. */
-  async function handleSubmit(evt) { 
+  async function handleSubmit(evt) {
     evt.preventDefault();
-    
+
     try {
       await logIn(formData);
     } catch (errors) {
@@ -89,8 +89,8 @@ function LoginForm({ initialFormData = defaultInitialFormData, logIn }) {
             </div>
 
             {formErrors.length
-                      ? <Alert type="danger" messages={formErrors} />
-                      : null}
+              ? <Alert type="danger" messages={formErrors} />
+              : null}
 
             <button className="btn-primary btn btn-md auth-submit-btn LoginForm-btn">
               Sign In

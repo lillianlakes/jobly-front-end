@@ -85,6 +85,13 @@ class JoblyApi {
     return res;
   }
 
+  /** Get AI job recommendations for a user. */
+
+  static async getAiRecommendations(username, limit = 10) {
+    let res = await this.request(`ai/recommendations/${username}`, { limit });
+    return res;
+  }
+
 }
 
 export default JoblyApi;

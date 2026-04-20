@@ -24,6 +24,17 @@
   z-index: 1;
 }
 
+.Home--logged-in {
+  align-items: flex-start;
+}
+
+.home-layout {
+  width: min(1100px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
 .home-button-container {
   display: flex;
   justify-content: center;
@@ -71,4 +82,124 @@ h1 {
   color: #1f4d82;
   margin-top: 1rem;
   font-weight: 700;
+}
+
+.recommendations-panel {
+  width: 100%;
+  padding: 1.6rem;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+  backdrop-filter: blur(16px);
+}
+
+.recommendations-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.recommendations-header h2 {
+  margin: 0.15rem 0 0.35rem;
+  color: #163f69;
+}
+
+.recommendations-subtitle,
+.recommendations-meta {
+  margin: 0;
+  color: #5d6b7d;
+}
+
+.refresh-recommendations-btn {
+  border-radius: 999px;
+  min-width: 210px;
+}
+
+.recommendations-state {
+  padding: 1.1rem 1.2rem;
+  border-radius: 20px;
+  background: rgba(75, 138, 216, 0.08);
+  color: #214a74;
+}
+
+.recommendations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.recommendation-card {
+  border-radius: 22px;
+  border: 1px solid rgba(75, 138, 216, 0.12);
+  box-shadow: 0 12px 26px rgba(15, 23, 42, 0.06);
+}
+
+.recommendation-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.recommendation-card-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.recommendation-title {
+  margin: 0;
+  color: #163f69;
+  font-size: 1.08rem;
+}
+
+.recommendation-company {
+  display: inline-block;
+  margin-top: 0.2rem;
+  color: #4b8ad8;
+  font-weight: 700;
+}
+
+.recommendation-score {
+  flex-shrink: 0;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(31, 138, 76, 0.12);
+  color: #1f8a4c;
+  font-weight: 800;
+}
+
+.recommendation-details p {
+  margin-bottom: 0.2rem;
+  color: #536375;
+}
+
+.recommendation-reasons-label {
+  margin-bottom: 0.35rem;
+  color: #214a74;
+  font-weight: 700;
+}
+
+.recommendation-reasons ul {
+  margin: 0;
+  padding-left: 1.15rem;
+  color: #5a6675;
+}
+
+.recommendation-reasons li + li {
+  margin-top: 0.3rem;
+}
+
+@media (max-width: 768px) {
+  .recommendations-header {
+    flex-direction: column;
+  }
+
+  .refresh-recommendations-btn {
+    width: 100%;
+  }
 }
