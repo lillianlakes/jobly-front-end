@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import Alert from "./Alert";
-import formatSalary from "./utilities/formatSalary";
 import UserContext from "./UserContext";
 import { Link } from "react-router-dom";
+import RecommendedJobCard from "./RecommendedJobCard";
 import "./Home.css"
 
 /** Goes to the homepage, displays differently depending on whether user is
@@ -19,15 +19,6 @@ function Home() {
   } = useContext(UserContext);
 
   const isLoggedIn = currentUser && currentUser !== "fetching" && currentUser.username;
-
-  function formatRecommendationScore(score) {
-    const numericScore = Number(score);
-
-    if (!Number.isFinite(numericScore)) return null;
-
-    const normalizedScore = Math.min(100, Math.max(0, Math.round(numericScore)));
-    return `${normalizedScore}%`;
-  }
 
   return (
     <div className={`Home ${isLoggedIn ? "Home--logged-in" : ""}`}>
@@ -83,35 +74,7 @@ function Home() {
                 ) : null}
                 <div className="recommendations-grid">
                   {aiRecommendations.map(rec => (
-                    <article key={rec.id} className="recommendation-card card">
-                      <div className="card-body recommendation-card-body">
-                        <div className="recommendation-card-top">
-                          <div>
-                            <h3 className="recommendation-title">{rec.title}</h3>
-                            <Link className="recommendation-company" to={`/companies/${rec.companyHandle}`}>
-                              {rec.companyHandle}
-                            </Link>
-                          </div>
-                          {formatRecommendationScore(rec.score) ? (
-                              <span className="recommendation-score">{formatRecommendationScore(rec.score)}</span>
-                            ) : null}
-                        </div>
-
-                        <div className="recommendation-details">
-                          {rec.salary ? <p>Salary: {formatSalary(rec.salary)}</p> : null}
-                          {rec.equity ? <p>Equity: {rec.equity}</p> : null}
-                        </div>
-
-                        {Array.isArray(rec.reasons) && rec.reasons.length ? (
-                          <div className="recommendation-reasons">
-                            <p className="recommendation-reasons-label">Why it matches</p>
-                            <ul>
-                              {rec.reasons.map((reason, idx) => <li key={`${rec.id}-reason-${idx}`}>{reason}</li>)}
-                            </ul>
-                          </div>
-                        ) : null}
-                      </div>
-                    </article>
+                    <RecommendedJobCard key={rec.id} recommendation={rec} />
                   ))}
                 </div>
               </>
