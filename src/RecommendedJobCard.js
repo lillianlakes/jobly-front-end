@@ -11,7 +11,6 @@ function RecommendedJobCard({ recommendation }) {
     title,
     companyHandle,
     companyName,
-    name,
     salary,
     equity,
     score,
@@ -88,16 +87,7 @@ function RecommendedJobCard({ recommendation }) {
     ? `${Math.min(100, Math.max(0, Math.round(Number(score))))}%`
     : null;
 
-  const companyDisplayName = useMemo(() => {
-    const explicitName = companyName || name;
-    if (explicitName) return explicitName;
-
-    return String(companyHandle || "")
-      .split("-")
-      .filter(Boolean)
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ");
-  }, [companyHandle, companyName, name]);
+  const companyDisplayName = companyName || companyHandle || "Unknown company";
 
   return (
     <article className="recommendation-card card">
