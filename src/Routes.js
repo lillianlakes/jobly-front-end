@@ -26,6 +26,9 @@ function Routes({ logIn, register }) {
       <PrivateRoute exact path="/companies/jobs" >
         {<JobList />}
       </PrivateRoute>
+      <PrivateRoute exact path="/recommendations" >
+        <Home />
+      </PrivateRoute>
       <PrivateRoute exact path="/companies/:handle" >
         {<CompanyDetail />}
       </PrivateRoute>
