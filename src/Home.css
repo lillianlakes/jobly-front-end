@@ -51,6 +51,7 @@
 
 .jobly-welcome {
   width: min(760px, 100%);
+  margin: 0 auto;
   padding: 3rem 2rem;
   border-radius: 32px;
   background: rgba(255, 255, 255, 0.72);
