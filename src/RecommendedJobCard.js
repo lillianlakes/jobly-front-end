@@ -17,7 +17,9 @@ function RecommendedJobCard({ recommendation }) {
   } = recommendation;
 
   const { currentUser, setCurrentUser, refreshRecommendations } = useContext(UserContext);
+  const { skipRecommendation } = useContext(UserContext);
   const [isApplying, setIsApplying] = useState(false);
+  const [isSkipping, setIsSkipping] = useState(false);
 
   const applications = useMemo(() => {
     const appArray = currentUser?.applications;
@@ -62,6 +64,24 @@ function RecommendedJobCard({ recommendation }) {
     }
   }
 
+  async function handleSkip() {
+    if (isSkipping) return;
+
+    setIsSkipping(true);
+
+    try {
+      if (typeof skipRecommendation === "function") {
+        skipRecommendation(id);
+      }
+
+      if (typeof refreshRecommendations === "function") {
+        refreshRecommendations();
+      }
+    } finally {
+      setIsSkipping(false);
+    }
+  }
+
   const scoreLabel = Number.isFinite(Number(score))
     ? `${Math.min(100, Math.max(0, Math.round(Number(score))))}%`
     : null;
@@ -94,14 +114,24 @@ function RecommendedJobCard({ recommendation }) {
         ) : null}
 
         {!isApplied ? (
-          <button
-            className="btn btn-primary btn-sm apply-btn"
-            onClick={handleApply}
-            disabled={isApplying}
-            aria-label={`Apply for ${title}`}
-          >
-            {isApplying ? "Applying..." : "Apply"}
-          </button>
+          <div className="recommendation-actions">
+            <button
+              className="btn btn-primary btn-sm apply-btn"
+              onClick={handleApply}
+              disabled={isApplying}
+              aria-label={`Apply for ${title}`}
+            >
+              {isApplying ? "Applying..." : "Apply"}
+            </button>
+            <button
+              className="btn btn-outline-secondary btn-sm skip-btn"
+              onClick={handleSkip}
+              disabled={isSkipping}
+              aria-label={`Skip ${title}`}
+            >
+              {isSkipping ? "Skipping..." : "Skip"}
+            </button>
+          </div>
         ) : (
           <button className="btn btn-sm applied-btn" disabled aria-label={`Already applied for ${title}`}>
             Applied!

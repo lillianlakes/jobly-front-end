@@ -6,7 +6,7 @@ import "./Recommendations.css";
 
 function Recommendations() {
   const {
-    aiRecommendations,
+    visibleAiRecommendations,
     aiMeta,
     aiLoading,
     aiError,
@@ -42,9 +42,9 @@ function Recommendations() {
 
         {aiLoading ? (
           <div className="recommendations-state">Loading recommendations...</div>
-        ) : aiRecommendations.length ? (
+        ) : visibleAiRecommendations.length ? (
           <div className="recommendations-grid">
-            {aiRecommendations.map(rec => (
+            {visibleAiRecommendations.map(rec => (
               <RecommendedJobCard key={rec.id} recommendation={rec} />
             ))}
           </div>

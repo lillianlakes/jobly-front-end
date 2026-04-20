@@ -11,7 +11,7 @@ import "./Home.css"
 function Home() {
   const {
     currentUser,
-    aiRecommendations,
+    visibleAiRecommendations,
     aiMeta,
     aiLoading,
     aiError,
@@ -65,15 +65,15 @@ function Home() {
 
             {aiLoading ? (
               <div className="recommendations-state">Loading recommendations...</div>
-            ) : aiRecommendations.length ? (
+            ) : visibleAiRecommendations.length ? (
               <>
                 {aiMeta ? (
                   <p className="recommendations-meta">
-                    Showing {aiMeta.returned} of {aiMeta.totalCandidates} candidate matches
+                    Showing {visibleAiRecommendations.length} of {aiMeta.totalCandidates} candidate matches
                   </p>
                 ) : null}
                 <div className="recommendations-grid">
-                  {aiRecommendations.map(rec => (
+                  {visibleAiRecommendations.map(rec => (
                     <RecommendedJobCard key={rec.id} recommendation={rec} />
                   ))}
                 </div>

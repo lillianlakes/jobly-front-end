@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { BrowserRouter } from "react-router-dom";
 import Routes from "./Routes";
 import NavBar from "./Navbar";
@@ -26,9 +26,29 @@ function App() {
   const [aiLoading, setAiLoading] = useState(false);
   const [aiError, setAiError] = useState(null);
   const [recommendationsRefreshKey, setRecommendationsRefreshKey] = useState(0);
+  const [skippedRecommendationIds, setSkippedRecommendationIds] = useState([]);
   const currentUsername = currentUser && currentUser !== "fetching"
     ? currentUser.username
     : null;
+
+  const currentApplicationIds = useMemo(() => {
+    const appArray = currentUser && currentUser !== "fetching" ? currentUser.applications : [];
+
+    if (!Array.isArray(appArray)) return [];
+
+    return appArray.map(Number);
+  }, [currentUser]);
+
+  const visibleAiRecommendations = useMemo(() => {
+    const skippedIds = new Set(skippedRecommendationIds.map(Number));
+
+    return aiRecommendations
+      .filter(rec => {
+        const recommendationId = Number(rec.id);
+        return !currentApplicationIds.includes(recommendationId) && !skippedIds.has(recommendationId);
+      })
+      .slice(0, 10);
+  }, [aiRecommendations, currentApplicationIds, skippedRecommendationIds]);
 
   /**  
    *   Makes API call to get the current user given a username and token.
@@ -71,7 +91,7 @@ function App() {
       setAiError(null);
 
       try {
-        const data = await JoblyApi.getAiRecommendations(currentUsername, 10);
+        const data = await JoblyApi.getAiRecommendations(currentUsername, 100);
         setAiRecommendations(data?.recommendations || []);
         setAiMeta(data?.meta || null);
       } catch (err) {
@@ -89,8 +109,22 @@ function App() {
     fetchRecommendations();
   }, [currentUsername, currentUser?.applications, recommendationsRefreshKey]);
 
+  useEffect(function resetSkippedRecommendationsForUser() {
+    setSkippedRecommendationIds([]);
+  }, [currentUsername]);
+
   function refreshRecommendations() {
     setRecommendationsRefreshKey(key => key + 1);
+  }
+
+  function skipRecommendation(recommendationId) {
+    setSkippedRecommendationIds(ids => {
+      const numericId = Number(recommendationId);
+
+      if (ids.map(Number).includes(numericId)) return ids;
+
+      return [...ids, numericId];
+    });
   }
 
   /**  
@@ -128,10 +162,12 @@ function App() {
         currentUser,
         setCurrentUser,
         aiRecommendations,
+        visibleAiRecommendations,
         aiMeta,
         aiLoading,
         aiError,
         refreshRecommendations,
+        skipRecommendation,
       }}>
         <BrowserRouter>
           {currentUser === "fetching" ?
