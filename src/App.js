@@ -27,6 +27,7 @@ function App() {
   const [aiError, setAiError] = useState(null);
   const [recommendationsRefreshKey, setRecommendationsRefreshKey] = useState(0);
   const [skippedRecommendationIds, setSkippedRecommendationIds] = useState([]);
+  const RECOMMENDATION_FETCH_LIMIT = 50;
   const currentUsername = currentUser && currentUser !== "fetching"
     ? currentUser.username
     : null;
@@ -91,7 +92,7 @@ function App() {
       setAiError(null);
 
       try {
-        const data = await JoblyApi.getAiRecommendations(currentUsername, 100);
+        const data = await JoblyApi.getAiRecommendations(currentUsername, RECOMMENDATION_FETCH_LIMIT);
         setAiRecommendations(data?.recommendations || []);
         setAiMeta(data?.meta || null);
       } catch (err) {
