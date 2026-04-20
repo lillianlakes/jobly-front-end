@@ -25,7 +25,7 @@ function Recommendations() {
         <div className="recommendations-topbar">
           {aiMeta ? (
             <p className="recommendations-meta">
-              Showing {aiMeta.returned} of {aiMeta.totalCandidates} candidate matches
+              Showing {visibleAiRecommendations.length} of {aiMeta.totalCandidates} candidate matches
             </p>
           ) : <div />}
 
