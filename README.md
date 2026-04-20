@@ -13,7 +13,7 @@ This project is a part of <a href="https://www.rithmschool.com/">Rithm School's<
 - bcrypt
 
 ## Live Demo
-- Here is a live demo of the <a href="https://jobly-lillian.netlify.app">Jobly</a> app.
+- Here is a live demo of the <a href="https://jobly.lillianlakes.com">Jobly</a> app.
 
 ### Getting started:
 In the project directory, you can run:
