@@ -1,3 +1,7 @@
+.profile-page-shell {
+    max-width: 760px;
+}
+
 .form-group {
     text-align: left;
 }
@@ -7,10 +11,37 @@
 }
 
 .form-user h3 {
-    color: black;
-    margin: 1rem 0 2rem;
+    color: #24405f;
+    margin: 0.35rem 0 1.5rem;
+    font-size: 1.4rem;
 }
 
 .profile-form {
-    margin: 0 2rem;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.profile-card-body {
+    padding: 2rem;
+}
+
+.profile-form-inner {
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+.profile-save-btn {
+    min-width: 180px;
+    border-radius: 999px;
+    padding: 0.9rem 1.5rem;
+}
+
+.profile-form .form-control {
+    min-height: 3.25rem;
+    background: rgba(248, 251, 255, 0.95);
+}
+
+.profile-form .Alert,
+.profile-form .alert {
+    border-radius: 16px;
 }

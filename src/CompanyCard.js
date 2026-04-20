@@ -18,7 +18,7 @@ function CompanyCard({ company }) {
   const { name, description, logoUrl, handle } = company;
 
   return (
-      <Link className="CompanyCard card" to={`companies/${handle}`}>
+      <Link className="CompanyCard card" to={`/companies/${handle}`}>
         <div className="card-body">
           <h5 className="card-title">
             <div>{name}</div>

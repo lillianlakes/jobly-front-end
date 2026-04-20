@@ -42,12 +42,16 @@ function JobList() {
   if (isLoading) return <i>Loading...</i>;
 
   return (
-    <div className="JobList col-md-8 offset-md-2">
+    <div className="JobList page-shell">
+      <div className="page-header">
+        <p className="page-kicker">Find your next move</p>
+        <h1 className="page-title">Jobs</h1>
+        <p className="page-subtitle">Browse roles from modern companies, compare compensation at a glance, and apply in one click.</p>
+      </div>
       <SearchBox search={search} />
       {jobs.length
         ? (
           <div>
-            <h1>Jobs</h1>
             <div className="JobList-list">
               {jobs.map(job =>
                 <JobCard key={job.id} job={job} />

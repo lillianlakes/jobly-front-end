@@ -45,83 +45,100 @@ function SignupForm({ initialFormData = defaultInitialFormData, register }) {
   }
 
   return (
-    <div className="SignupForm col-md-6 col-lg-4 offset-md-3 offset-lg-4">
-      <h1>Sign Up</h1>
-      <form className="SignupForm-formfields" onSubmit={handleSubmit}>
-        <div className="form-group">
-          <input
-            id="username"
-            name="username"
-            className="form-control"
-            placeholder="username"
-            onChange={handleChange}
-            value={formData.username}
-            aria-label="username"
-            required
-          />
+    <div className="page-shell auth-page-shell">
+      <div className="page-header auth-page-header">
+        <p className="page-kicker">Join the network</p>
+        <h1 className="page-title">Sign Up</h1>
+        <p className="page-subtitle">Create an account and start exploring opportunities with a polished, guided signup flow.</p>
+      </div>
+
+      <div className="auth-card card content-card">
+        <div className="card-body auth-card-body">
+          <form className="SignupForm SignupForm-formfields" onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="username">Username</label>
+              <input
+                id="username"
+                name="username"
+                className="form-control auth-input"
+                placeholder="Enter a username"
+                onChange={handleChange}
+                value={formData.username}
+                aria-label="username"
+                autoComplete="username"
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                className="form-control auth-input"
+                placeholder="Create a password"
+                onChange={handleChange}
+                value={formData.password}
+                aria-label="password"
+                autoComplete="new-password"
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="firstName">First Name</label>
+              <input
+                id="firstName"
+                name="firstName"
+                className="form-control auth-input"
+                placeholder="First name"
+                onChange={handleChange}
+                value={formData.firstName}
+                aria-label="firstName"
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="lastName">Last Name</label>
+              <input
+                id="lastName"
+                name="lastName"
+                className="form-control auth-input"
+                placeholder="Last name"
+                onChange={handleChange}
+                value={formData.lastName}
+                aria-label="lastName"
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="email">Email</label>
+              <input
+                id="email"
+                name="email"
+                className="form-control auth-input"
+                placeholder="name@example.com"
+                onChange={handleChange}
+                value={formData.email}
+                aria-label="email"
+                autoComplete="email"
+                required
+              />
+            </div>
+
+            {formErrors.length
+                      ? <Alert type="danger" messages={formErrors} />
+                      : null}
+
+            <button className="btn-primary btn btn-md auth-submit-btn SignupForm-btn">
+              Create Account
+            </button>
+          </form>
         </div>
-
-        <div className="form-group">
-          <input
-            type="password"
-            id="password"
-            name="password"
-            className="form-control"
-            placeholder="password"
-            onChange={handleChange}
-            value={formData.password}
-            aria-label="password"
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <input
-            id="firstName"
-            name="firstName"
-            className="form-control"
-            placeholder="firstName"
-            onChange={handleChange}
-            value={formData.firstName}
-            aria-label="firstName"
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <input
-            id="lastName"
-            name="lastName"
-            className="form-control"
-            placeholder="lastName"
-            onChange={handleChange}
-            value={formData.lastName}
-            aria-label="lastName"
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <input
-            id="email"
-            name="email"
-            className="form-control"
-            placeholder="email"
-            onChange={handleChange}
-            value={formData.email}
-            aria-label="email"
-            required
-          />
-        </div>
-
-        {formErrors.length
-                  ? <Alert type="danger" messages={formErrors} />
-                  : null}
-
-        <button className="btn-primary btn btn-md SignupForm-btn">
-          Submit
-        </button>
-      </form>
+      </div>
     </div>
   );
 }

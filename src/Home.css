@@ -1,29 +1,51 @@
 .Home {
-    /* put around the vertical center of page */
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    margin-top: -75px;
-    background-image: url('img/jobly.jpg');
-    background-repeat: no-repeat;
-    background-size: 100%;
-  }
-  
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem 4rem;
+  margin-top: -1rem;
+  background:
+    linear-gradient(180deg, rgba(7, 15, 32, 0.2), rgba(7, 15, 32, 0.32)),
+    url('./img/jobly.jpg') center/cover no-repeat;
+  position: relative;
+}
+
+.Home::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.2));
+  pointer-events: none;
+}
+
+.Home > * {
+  position: relative;
+  z-index: 1;
+}
+
 .home-button-container {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
 .home-button {
+  min-width: 140px;
   margin: 0.25rem;
+  border-radius: 999px;
+  padding: 0.85rem 1.4rem;
 }
 
 .jobly-welcome {
-  background-color: rgba(250, 248, 254, 0.879);
-  width: 60%;
-  padding: 3rem 1rem;
-  border-radius: 5px;
+  width: min(760px, 100%);
+  padding: 3rem 2rem;
+  border-radius: 32px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.22);
+  backdrop-filter: blur(18px);
 }
 
 h1 {
@@ -32,4 +54,21 @@ h1 {
 
 .font-weight-bold {
   font-weight: bold;
+}
+
+.jobly-welcome h1 {
+  font-size: clamp(3rem, 6vw, 4.4rem);
+  letter-spacing: -0.05em;
+}
+
+.jobly-welcome .lead {
+  color: #31415c;
+  max-width: 42rem;
+  margin: 0 auto 1rem;
+}
+
+.jobly-welcome h2 {
+  color: #1f4d82;
+  margin-top: 1rem;
+  font-weight: 700;
 }

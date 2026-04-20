@@ -44,11 +44,15 @@ function Applications() {
   if (isLoading) return <i>Loading...</i>;
 
   return (
-    <div className="JobList col-md-8 offset-md-2">
+    <div className="JobList page-shell">
+      <div className="page-header">
+        <p className="page-kicker">Your progress</p>
+        <h1 className="page-title">Applications</h1>
+        <p className="page-subtitle">Track every role you’ve already applied to in one polished dashboard.</p>
+      </div>
       {jobs.length
         ? (
           <div>
-            <h1>Applications</h1>
             <div className="JobList-list">
               {jobs.map(job =>
                 <JobCard key={job.id} job={job} />

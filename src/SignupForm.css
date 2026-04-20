@@ -1,12 +1,22 @@
 .SignupForm {
-    padding: 1rem 2rem;
+    padding: 0;
 }
 
-.form-control {
-    margin-bottom: 1rem;;
+.SignupForm-formfields {
+    max-width: 430px;
+    margin: 0 auto;
+    text-align: left;
 }
 
-h1 {
+.SignupForm-formfields .form-group {
+    margin-bottom: 1rem;
+}
+
+.SignupForm-formfields .form-control {
+    margin-bottom: 0;
+}
+
+.SignupForm h1 {
     margin-bottom: 1.5rem;
 }
 

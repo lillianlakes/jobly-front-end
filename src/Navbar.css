@@ -1,3 +1,7 @@
+.Navigation {
+  width: 100%;
+}
+
 .navbar-expand-md {
   width: 100%;
   padding: 1rem;
@@ -10,11 +14,49 @@
 }
 
 .navbar {
-  margin-bottom: 2rem;
-  margin-top: -0.25rem;
+  margin-bottom: 0;
+  margin-top: 0;
+  background: rgba(17, 24, 39, 0.92) !important;
+  backdrop-filter: blur(18px);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.22);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .navbar-brand h4 {
-  color: white;
+  color: #f8fbff;
+  font-size: 1.6rem;
+  margin: 0;
+  letter-spacing: -0.03em;
+}
+
+.navbar-brand:hover h4 {
+  color: #8fc0ff;
+}
+
+.navbar .nav-link {
+  color: rgba(244, 248, 252, 0.82) !important;
+  font-weight: 500;
+  border-radius: 999px;
+  padding: 0.45rem 0.85rem !important;
+  transition: all 0.2s ease;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.navbar .nav-item {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.navbar-toggler-icon {
+  filter: brightness(2);
 }
 

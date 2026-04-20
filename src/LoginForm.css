@@ -1,3 +1,44 @@
+.auth-page-shell {
+    max-width: 760px;
+}
+
+.auth-page-header {
+    text-align: center;
+}
+
+.auth-card {
+    max-width: 540px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.auth-card-body {
+    padding: 2.25rem 2rem 2rem;
+}
+
 .LoginForm {
-    padding: 1rem 2rem;
+    padding: 0;
+}
+
+.LoginForm-formfields {
+    max-width: 430px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.LoginForm-formfields .form-group {
+    margin-bottom: 1rem;
+}
+
+.auth-input {
+    min-height: 3.3rem;
+    background: rgba(248, 251, 255, 0.96);
+}
+
+.auth-submit-btn {
+    width: 100%;
+    margin-top: 0.5rem;
+    border-radius: 999px;
+    min-height: 3.3rem;
+    font-weight: 700;
 }

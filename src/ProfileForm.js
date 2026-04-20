@@ -90,11 +90,15 @@ function ProfileForm() {
   }
 
   return (
-      <div className="col-md-6 col-lg-4 offset-md-3 offset-lg-4">
-        <h1>Profile</h1>
-        <div className="profile-form card">
-          <div className="card-body">
-            <form>
+      <div className="page-shell profile-page-shell">
+        <div className="page-header">
+          <p className="page-kicker">Account center</p>
+          <h1 className="page-title">Profile</h1>
+          <p className="page-subtitle">Keep your account details current and make updates in a clean, distraction-free workspace.</p>
+        </div>
+        <div className="profile-form card content-card">
+          <div className="card-body profile-card-body">
+            <form className="profile-form-inner">
 
               <div className="form-group form-user">
                 <label><h3>Edit details for {currentUser.username}:</h3> </label>
@@ -151,7 +155,7 @@ function ProfileForm() {
                   : null}
 
               <button
-                  className="btn btn-primary btn-block mt-4"
+                  className="btn btn-primary btn-block mt-4 profile-save-btn"
                   onClick={handleSubmit}
               >
                 Save Changes

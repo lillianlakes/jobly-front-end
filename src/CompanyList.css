@@ -1,3 +1,17 @@
+.CompanyList {
+    padding-bottom: 1rem;
+}
+
 .CompanyList-list {
-    padding: 1rem 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 1.5rem;
+    padding: 0.5rem 0 0;
+}
+
+.CompanyList .lead {
+    color: #56708f;
+    font-size: 1.05rem;
+    max-width: 700px;
+    margin: 0.75rem auto 0;
 }
