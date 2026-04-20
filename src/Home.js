@@ -25,7 +25,7 @@ function Home() {
                 to="/login">Log in
               </Link>
               <Link className="home-button btn btn-primary font-weight-bold"
-                to="/signup">Sign Up</Link> 
+                to="/signup">Sign Up</Link>
             </div>
           )}
       </div>

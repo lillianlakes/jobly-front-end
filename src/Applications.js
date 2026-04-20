@@ -34,7 +34,7 @@ function Applications() {
 
       let jobsResults = await JoblyApi.request('jobs')
       let appliedJobs = jobsResults.jobs.filter(j => applications.includes(Number(j.id)));
-     
+
       setJobs(appliedJobs);
       setIsLoading(false);
     }

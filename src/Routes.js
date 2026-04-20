@@ -15,35 +15,35 @@ import Applications from "./Applications";
  *  Private Routes check for a current user - see PrivateRoute.js
  */
 function Routes({ logIn, register }) {
-    return (
-        <Switch>
-            <Route exact path="/" >
-                <Home />
-            </Route>
-            <PrivateRoute exact path="/companies" >
-                <CompanyList />
-            </PrivateRoute>
-            <PrivateRoute exact path="/companies/jobs" >
-                {<JobList />}
-            </PrivateRoute>
-            <PrivateRoute exact path="/companies/:handle" >
-                {<CompanyDetail />}
-            </PrivateRoute>
-            <Route exact path="/login" >
-                <LoginForm logIn={logIn} />
-            </Route>
-            <Route exact path="/signup" >
-                <SignupForm register={register} />
-            </Route>
-            <PrivateRoute exact path="/profile" >
-                <ProfileForm />
-            </PrivateRoute>
-            <PrivateRoute exact path="/applications" >
-                <Applications />
-            </PrivateRoute>
-            <Redirect to="/" />
-        </Switch>
-    )
+  return (
+    <Switch>
+      <Route exact path="/" >
+        <Home />
+      </Route>
+      <PrivateRoute exact path="/companies" >
+        <CompanyList />
+      </PrivateRoute>
+      <PrivateRoute exact path="/companies/jobs" >
+        {<JobList />}
+      </PrivateRoute>
+      <PrivateRoute exact path="/companies/:handle" >
+        {<CompanyDetail />}
+      </PrivateRoute>
+      <Route exact path="/login" >
+        <LoginForm logIn={logIn} />
+      </Route>
+      <Route exact path="/signup" >
+        <SignupForm register={register} />
+      </Route>
+      <PrivateRoute exact path="/profile" >
+        <ProfileForm />
+      </PrivateRoute>
+      <PrivateRoute exact path="/applications" >
+        <Applications />
+      </PrivateRoute>
+      <Redirect to="/" />
+    </Switch>
+  )
 }
 
 export default Routes;

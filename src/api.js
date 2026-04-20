@@ -25,7 +25,7 @@ class JoblyApi {
       return (await axios({ url, method, data, params, headers })).data;
     } catch (err) {
       console.error("API Error:", err.response);
-      let message = err.response.data.error.message;
+      let message = err?.response?.data?.error?.message || "Request failed";
       throw Array.isArray(message) ? message : [message];
     }
   }
@@ -71,19 +71,19 @@ class JoblyApi {
     return res.user;
   }
 
-    /** Save user profile page. */
+  /** Save user profile page. */
 
-    static async saveProfile(username, data) {
-      let res = await this.request(`users/${username}`, data, "patch");
-      return res.user;
-    }
+  static async saveProfile(username, data) {
+    let res = await this.request(`users/${username}`, data, "patch");
+    return res.user;
+  }
 
-    /** User applies for a job. */
+  /** User applies for a job. */
 
-    static async applyToJob(username, id) {
-      let res = await this.request(`users/${username}/jobs/${id}`);
-      return res;
-    }
+  static async applyToJob(username, id) {
+    let res = await this.request(`users/${username}/jobs/${id}`, {}, "post");
+    return res;
+  }
 
 }
 

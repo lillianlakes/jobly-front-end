@@ -25,7 +25,7 @@ function JobCard({ job }) {
     const numericId = Number(id);
     return applications.map(Number).includes(numericId);
   }, [applications, id]);
-  
+
   async function handleSubmit() {
 
     if (!currentUser?.username || isApplied || isApplying) return;
@@ -47,6 +47,8 @@ function JobCard({ job }) {
           applications: [...prevApplications, jobId]
         };
       });
+    } catch (err) {
+      console.error("Unable to apply for job:", err);
     } finally {
       setIsApplying(false);
     }

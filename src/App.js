@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 import Routes from "./Routes";
 import NavBar from "./Navbar";
-import UserContext from "./UserContext"; 
+import UserContext from "./UserContext";
 import './App.css';
 import JoblyApi from "./api";
 import jwt from "jsonwebtoken"
@@ -17,8 +17,8 @@ import jwt from "jsonwebtoken"
  */
 
 function App() {
-  
-  const initialToken = JSON.parse(localStorage.getItem("token")) || null;  
+
+  const initialToken = JSON.parse(localStorage.getItem("token")) || null;
   const [token, setToken] = useState(initialToken);
   const [currentUser, setCurrentUser] = useState("fetching"); // or could have a user, or an empty object, or set it to string like "waiting" or fetching
 
@@ -26,8 +26,8 @@ function App() {
    *   Makes API call to get the current user given a username and token.
    *   Sets the currentUser.
    */
-  useEffect(function updateUserWithTokenChange() {   
-    async function fetchCurrentUser(token) { 
+  useEffect(function updateUserWithTokenChange() {
+    async function fetchCurrentUser(token) {
       setCurrentUser("fetching");
 
       try {
@@ -44,7 +44,7 @@ function App() {
     }
 
     JoblyApi.token = token;
- 
+
     if (token) fetchCurrentUser(token);
     if (!token) setCurrentUser({});
   }, [token]);
@@ -80,15 +80,15 @@ function App() {
 
   return (
     <div className="App">
-      <UserContext.Provider value={{currentUser, setCurrentUser }}> 
+      <UserContext.Provider value={{ currentUser, setCurrentUser }}>
         <BrowserRouter>
           {currentUser === "fetching" ?
             <i>loading...</i>
             :
             <div>
-              <NavBar logOut={logOut} /> 
+              <NavBar logOut={logOut} />
               <Routes logIn={logIn} register={register} />
-            </div> }
+            </div>}
         </BrowserRouter>
       </UserContext.Provider>
     </div>
